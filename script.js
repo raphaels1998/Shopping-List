@@ -4,15 +4,15 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
         const itemValue = itemInput.value.trim();
 
         if (itemValue !== '') {
-            if(itemValue.length > 25){
-                showTemporaryMessage('Item must be 25 characters or fewer');
-                itemInput.value = '';
+            // Ensure item input is not more than 25 characters
+            if(itemValue.length > 25) {
+                itemInput.value = itemInput.value.substring(0, 25); // Automatically truncate to 25 characters
                 return;
             }
 
             const listItem = document.createElement('li');
             listItem.classList.add('swipe-item'); // Add swipe class to list item
-            
+
             // Create and append the item text
             const itemText = document.createElement('span');
             itemText.textContent = itemValue;
@@ -42,7 +42,7 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
 });
 
 // Restrict input length to 25 characters while typing
-document.getElementById('itemInput').addEventListener('keyup', function(event) {
+document.getElementById('itemInput').addEventListener('input', function(event) {
     const itemInput = document.getElementById('itemInput');
     if (itemInput.value.length > 25) {
         itemInput.value = itemInput.value.substring(0, 25); // Truncate the input to 25 characters
@@ -50,14 +50,7 @@ document.getElementById('itemInput').addEventListener('keyup', function(event) {
 });
 
 function showTemporaryMessage(message) {
-    const messageDiv = document.getElementById('temporaryMessage');
-    messageDiv.textContent = message;
-    messageDiv.style.display = 'block'; // Make the message visible
-
-    // Hide the message after 3 seconds
-    setTimeout(function() {
-        messageDiv.style.display = 'none';
-    }, 3000); // 3000 ms = 3 seconds
+    // Remove this function entirely since it's not needed anymore.
 }
 
 // Function to add swipe functionality to a list item
@@ -75,7 +68,6 @@ function addSwipeHandler(listItem) {
 
         if (deltaX < 0) { // Swiping left
             listItem.style.transform = `translateX(${deltaX}px)`;
-            listItem.classList.add('swiping'); // Add the swiping highlight
         }
     });
 
@@ -87,7 +79,6 @@ function addSwipeHandler(listItem) {
             setTimeout(() => listItem.remove(), 300); // Remove after animation
         } else {
             listItem.style.transform = 'translateX(0)'; // Reset position
-            listItem.classList.remove('swiping'); // Remove swiping highlight
         }
     });
 }

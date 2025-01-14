@@ -49,6 +49,16 @@ document.getElementById('itemInput').addEventListener('input', function(event) {
     }
 });
 
+document.getElementById('itemInput').addEventListener('focus', function() {
+    // This will make sure that the page doesn't zoom in when the input field is focused
+    document.body.style.zoom = "100%"; 
+});
+
+document.getElementById('itemInput').addEventListener('blur', function() {
+    // Zoom out once the input field is no longer focused
+    document.body.style.zoom = "100%";
+});
+
 function showTemporaryMessage(message) {
     // Remove this function entirely since it's not needed anymore.
 }

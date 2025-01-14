@@ -1,144 +1,105 @@
+// Event listener for adding items to the shopping list
+document.getElementById('itemInput').addEventListener('keydown', function(event) {
+    const itemInput = document.getElementById('itemInput');
+    const itemValue = itemInput.value.trim();
+    const errorMessage = document.getElementById('error-message');
 
-let activeList = '';  // To track which list is active
+    // Check if the key pressed is "Enter"
+    if (event.key === 'Enter') {
+        console.log('Enter key pressed');  // Debugging: log that Enter was pressed
 
-// Show the Master List and Shopping List when the circles are clicked
-document.getElementById('masterListCircle').addEventListener('click', function() {
-    activeList = 'master'; // Set active list to master list
-    showListCreation('master');
-});
-
-document.getElementById('shoppingListCircle').addEventListener('click', function() {
-    activeList = 'shopping'; // Set active list to shopping list
-    showListCreation('shopping');
-});
-
-// Function to show the relevant list creation section
-function showListCreation(listType) {
-    // Hide both list sections initially
-    document.getElementById('masterListSection').style.display = 'none';
-    document.getElementById('shoppingListSection').style.display = 'none';
-
-    // Show the active list section
-    if (listType === 'master') {
-        document.getElementById('masterListSection').style.display = 'block';
-        document.getElementById('masterItemInput').focus();
-    } else if (listType === 'shopping') {
-        document.getElementById('shoppingListSection').style.display = 'block';
-        document.getElementById('shoppingItemInput').focus();
-    }
-}
-
-// Function to handle adding items to the list
-function addItemToList() {
-    const inputField = activeList === 'master' ? document.getElementById('masterItemInput') : document.getElementById('shoppingItemInput');
-    const errorMessage = activeList === 'master' ? document.getElementById('masterErrorMessage') : document.getElementById('shoppingErrorMessage');
-    const list = activeList === 'master' ? document.getElementById('masterList') : document.getElementById('shoppingList');
-
-    const itemValue = inputField.value.trim();
-    
-    if (itemValue !== '') {
-        // Check for duplicate items
-        const existingItems = list.querySelectorAll('li');
-        for (let i = 0; i < existingItems.length; i++) {
-            const existingItemText = existingItems[i].querySelector('span').textContent;
-            if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {
-                errorMessage.textContent = 'This item already exists in the list.';
-                errorMessage.style.visibility = 'visible';
-                inputField.value = '';
+        // If the input value is not empty
+        if (itemValue !== '') {
+            // Ensure item input is not more than 25 characters
+            if (itemValue.length > 25) {
+                itemInput.value = itemInput.value.substring(0, 25); // Automatically truncate to 25 characters
                 return;
             }
-        }
 
-        // Hide error message and add the new item
-        errorMessage.style.visibility = 'hidden';
+            // Check for duplicate items in the list
+            const existingItems = document.querySelectorAll('#shoppingList li');
+            for (let i = 0; i < existingItems.length; i++) {
+                const existingItemText = existingItems[i].querySelector('span').textContent;
+                if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {  // Case-insensitive comparison
+                    console.log('Duplicate found');  // Debugging: log that duplicate was found
+                    errorMessage.textContent = 'This item already exists in the list.';
+                    errorMessage.style.visibility = 'visible';  // Make the message visible
+                    itemInput.value = ''; // Clear the input field
+                    return; // Exit the function if a duplicate is found
+                }
+            }
 
-        const listItem = document.createElement('li');
-        listItem.classList.add('swipe-item');
-        
-        const itemText = document.createElement('span');
-        itemText.textContent = itemValue;
-        listItem.appendChild(itemText);
+            // Hide the error message if item is added successfully
+            errorMessage.style.visibility = 'hidden';
 
-        // Create and append the amount input field for the item
-        const amountInput = document.createElement('input');
-        amountInput.type = 'number';
-        amountInput.classList.add('amount-input');
-        amountInput.placeholder = 'Qty';
-        amountInput.value = 0;  // Default quantity value
-        amountInput.min = 0;    // Minimum value for quantity
-        amountInput.max = 999;    // Max value for quantity
+            // Create a new list item
+            const listItem = document.createElement('li');
+            listItem.classList.add('swipe-item'); // Add swipe class to list item
 
-        // Add an event listener to only allow numbers and show the numeric keypad
-        amountInput.addEventListener('focus', function() {
-            amountInput.select();  // Select the value to quickly edit on focus
-        });
+            // Create and append the item text
+            const itemText = document.createElement('span');
+            itemText.textContent = itemValue;
+            listItem.appendChild(itemText);  // Append the span to the list item
 
-        listItem.appendChild(amountInput);  // Append the amount input field to the list item
+            // Create the amount input field for the quantity
+            const amountInput = document.createElement('input');
+            amountInput.type = 'number';
+            amountInput.classList.add('amount-input');
+            amountInput.min = 1; // Minimum value allowed
+            amountInput.max = 999; // Maximum value allowed
+            amountInput.step = 1;  // Only whole numbers allowed
+            amountInput.value = 1; // Default value
 
-        // Create the delete button
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'delete-button';
-        deleteButton.addEventListener('click', function() {
-            listItem.remove();
-        });
+            // Append the amount input to the list item
+            listItem.appendChild(amountInput);
 
-        listItem.appendChild(deleteButton);
-        list.appendChild(listItem);
+            // Create and append the delete button
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-button';
+            deleteButton.addEventListener('click', function() {
+                listItem.remove(); // Remove the item when clicked
+            });
 
-        // Clear the input field
-        inputField.value = '';
+            // Append the delete button to the list item
+            listItem.appendChild(deleteButton);
 
-        // Optionally, add swipe functionality if you haven't already done so
-        addSwipeHandler(listItem);
-    }
-}
+            // Append the list item to the shopping list
+            document.getElementById('shoppingList').appendChild(listItem);
+            itemInput.value = ''; // Clear the input field after adding the item
 
-// Add the Enter key event listener to the input fields for each list
-document.getElementById('masterItemInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        addItemToList();
-    }
-});
-
-document.getElementById('shoppingItemInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        addItemToList();
-    }
-});
-
-// Function to handle swipe-to-delete functionality
-function addSwipeHandler(listItem) {
-    let startX;
-
-    listItem.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX;
-        listItem.classList.remove('deleted');
-        listItem.style.transition = 'none';
-    });
-
-    listItem.addEventListener('touchmove', function(event) {
-        const currentX = event.touches[0].clientX;
-        const deltaX = currentX - startX;
-
-        if (deltaX < 0) {
-            listItem.style.transform = `translateX(${deltaX}px)`;
-        }
-    });
-
-    listItem.addEventListener('touchend', function(event) {
-        const deltaX = event.changedTouches[0].clientX - startX;
-
-        if (deltaX < -100) {
-            listItem.classList.add('deleted');
-            listItem.style.transition = 'transform 0.3s ease-out';
-            listItem.style.transform = 'translateX(-100%)';
-            setTimeout(() => listItem.remove(), 300);
+            console.log('Item added:', itemValue);  // Debugging: log the added item
         } else {
-            listItem.style.transition = 'transform 0.3s ease-out';
-            listItem.style.transform = 'translateX(0)';
+            console.log('Input is empty');  // Debugging: log if the input is empty
         }
-    });
-}
+    }
+});
 
+// Restrict input length to 25 characters while typing
+document.getElementById('itemInput').addEventListener('input', function(event) {
+    const itemInput = document.getElementById('itemInput');
+    if (itemInput.value.length > 25) {
+        itemInput.value = itemInput.value.substring(0, 25); // Truncate the input to 25 characters
+    }
+
+    // Hide the error message as the user starts typing again
+    const errorMessage = document.getElementById('error-message');
+    if (errorMessage.style.visibility === 'visible') {
+        errorMessage.style.visibility = 'hidden';
+    }
+});
+
+// Event listener for when the input field is focused (keyboard shows)
+document.getElementById('itemInput').addEventListener('focus', function() {
+    document.body.style.zoom = '100%';  // Reset zoom to 100% when focusing
+});
+
+// Event listener for when the input field loses focus (keyboard hides)
+document.getElementById('itemInput').addEventListener('blur', function() {
+    // Delay setting zoom out after the input loses focus to avoid page movement
+    setTimeout(function() {
+        document.body.style.zoom = '100%';  // Reset zoom to 100% after typing
+        window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
+    }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
+});
 

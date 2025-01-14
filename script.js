@@ -10,6 +10,17 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
                 return;
             }
 
+            // Check for duplicate items in the list
+            const existingItems = document.querySelectorAll('#shoppingList li');
+            for (let i = 0; i < existingItems.length; i++) {
+                const existingItemText = existingItems[i].querySelector('span').textContent;
+                if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {  // Case-insensitive comparison
+                    alert('This item already exists in the list.');
+                    itemInput.value = ''; // Clear the input field if duplicate is found
+                    return; // Exit the function if a duplicate is found
+                }
+            }
+
             const listItem = document.createElement('li');
             listItem.classList.add('swipe-item'); // Add swipe class to list item
 
@@ -93,3 +104,4 @@ function addSwipeHandler(listItem) {
         }
     });
 }
+

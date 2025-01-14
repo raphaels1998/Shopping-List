@@ -1,78 +1,95 @@
-let activeList = 'shoppingList'; // Default active list is shopping list
+let activeList = '';  // To track which list is active
 
-// Show the list creation section and set the active list when clicking a circle
+// Show the Master List and Shopping List when the circles are clicked
 document.getElementById('masterListCircle').addEventListener('click', function() {
-    document.getElementById('listCreationSection').style.display = 'block'; // Show the list creation section
-    activeList = 'masterList'; // Set active list to Master List
-    document.getElementById('itemInput').focus(); // Focus the input field
-    document.getElementById('shoppingList').innerHTML = ''; // Clear previous list items if any
+    activeList = 'master'; // Set active list to master list
+    showListCreation('master');
 });
 
 document.getElementById('shoppingListCircle').addEventListener('click', function() {
-    document.getElementById('listCreationSection').style.display = 'block'; // Show the list creation section
-    activeList = 'shoppingList'; // Set active list to Shopping List
-    document.getElementById('itemInput').focus(); // Focus the input field
-    document.getElementById('shoppingList').innerHTML = ''; // Clear previous list items if any
+    activeList = 'shopping'; // Set active list to shopping list
+    showListCreation('shopping');
 });
 
-// Add your existing code for adding items to the list
-document.getElementById('itemInput').addEventListener('keydown', function(event) {
-    const itemInput = document.getElementById('itemInput');
-    const itemValue = itemInput.value.trim();
-    const errorMessage = document.getElementById('error-message');
+// Function to show the relevant list creation section
+function showListCreation(listType) {
+    // Hide both list sections initially
+    document.getElementById('masterListSection').style.display = 'none';
+    document.getElementById('shoppingListSection').style.display = 'none';
 
-    if (event.key === 'Enter') {
-        console.log('Enter key pressed');
+    // Show the active list section
+    if (listType === 'master') {
+        document.getElementById('masterListSection').style.display = 'block';
+        document.getElementById('masterItemInput').focus();
+    } else if (listType === 'shopping') {
+        document.getElementById('shoppingListSection').style.display = 'block';
+        document.getElementById('shoppingItemInput').focus();
+    }
+}
 
-        if (itemValue !== '') {
-            if (itemValue.length > 25) {
-                itemInput.value = itemInput.value.substring(0, 25);
+// Function to handle adding items to the list
+function addItemToList() {
+    const inputField = activeList === 'master' ? document.getElementById('masterItemInput') : document.getElementById('shoppingItemInput');
+    const errorMessage = activeList === 'master' ? document.getElementById('masterErrorMessage') : document.getElementById('shoppingErrorMessage');
+    const list = activeList === 'master' ? document.getElementById('masterList') : document.getElementById('shoppingList');
+
+    const itemValue = inputField.value.trim();
+    
+    if (itemValue !== '') {
+        // Check for duplicate items
+        const existingItems = list.querySelectorAll('li');
+        for (let i = 0; i < existingItems.length; i++) {
+            const existingItemText = existingItems[i].querySelector('span').textContent;
+            if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {
+                errorMessage.textContent = 'This item already exists in the list.';
+                errorMessage.style.visibility = 'visible';
+                inputField.value = '';
                 return;
             }
-
-            // Check if the item already exists in the active list
-            const listToCheck = document.getElementById(activeList);
-            const existingItems = listToCheck.querySelectorAll('li');
-            for (let i = 0; i < existingItems.length; i++) {
-                const existingItemText = existingItems[i].querySelector('span').textContent;
-                if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {
-                    console.log('Duplicate found');
-                    errorMessage.textContent = 'This item already exists in the list.';
-                    errorMessage.style.visibility = 'visible';
-                    itemInput.value = '';
-                    return;
-                }
-            }
-
-            errorMessage.style.visibility = 'hidden';
-
-            const listItem = document.createElement('li');
-            listItem.classList.add('swipe-item');
-
-            const itemText = document.createElement('span');
-            itemText.textContent = itemValue;
-            listItem.appendChild(itemText);
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-button';
-            deleteButton.addEventListener('click', function() {
-                listItem.remove();
-            });
-
-            listItem.appendChild(deleteButton);
-
-            listToCheck.appendChild(listItem);
-            itemInput.value = '';
-
-            addSwipeHandler(listItem);
-        } else {
-            console.log('Input is empty');
         }
+
+        // Hide error message and add the new item
+        errorMessage.style.visibility = 'hidden';
+
+        const listItem = document.createElement('li');
+        listItem.classList.add('swipe-item');
+        
+        const itemText = document.createElement('span');
+        itemText.textContent = itemValue;
+        listItem.appendChild(itemText);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.className = 'delete-button';
+        deleteButton.addEventListener('click', function() {
+            listItem.remove();
+        });
+
+        listItem.appendChild(deleteButton);
+        list.appendChild(listItem);
+
+        // Clear the input field
+        inputField.value = '';
+
+        // Optionally, add swipe functionality if you haven't already done so
+        addSwipeHandler(listItem);
+    }
+}
+
+// Add the Enter key event listener to the input fields for each list
+document.getElementById('masterItemInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        addItemToList();
     }
 });
 
-// Function to add swipe functionality to a list item
+document.getElementById('shoppingItemInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        addItemToList();
+    }
+});
+
+// Function to handle swipe-to-delete functionality
 function addSwipeHandler(listItem) {
     let startX;
 

@@ -1,11 +1,12 @@
 document.getElementById('itemInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        const itemInput = document.getElementById('itemInput');
-        const itemValue = itemInput.value.trim();
+    const itemInput = document.getElementById('itemInput');
+    const itemValue = itemInput.value.trim();
+    const errorMessage = document.getElementById('error-message');
 
+    if (event.key === 'Enter') {
         if (itemValue !== '') {
             // Ensure item input is not more than 25 characters
-            if(itemValue.length > 25) {
+            if (itemValue.length > 25) {
                 itemInput.value = itemInput.value.substring(0, 25); // Automatically truncate to 25 characters
                 return;
             }
@@ -15,11 +16,16 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             for (let i = 0; i < existingItems.length; i++) {
                 const existingItemText = existingItems[i].querySelector('span').textContent;
                 if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {  // Case-insensitive comparison
-                    alert('This item already exists in the list.');
-                    itemInput.value = ''; // Clear the input field if duplicate is found
+                    // Show error message for duplicate
+                    errorMessage.textContent = 'This item already exists in the list.';
+                    errorMessage.style.visibility = 'visible';  // Make the message visible
+                    itemInput.value = ''; // Clear the input field
                     return; // Exit the function if a duplicate is found
                 }
             }
+
+            // Hide the error message if item is added successfully
+            errorMessage.style.visibility = 'hidden';
 
             const listItem = document.createElement('li');
             listItem.classList.add('swipe-item'); // Add swipe class to list item
@@ -58,6 +64,12 @@ document.getElementById('itemInput').addEventListener('input', function(event) {
     if (itemInput.value.length > 25) {
         itemInput.value = itemInput.value.substring(0, 25); // Truncate the input to 25 characters
     }
+
+    // Hide the error message as the user starts typing again
+    const errorMessage = document.getElementById('error-message');
+    if (errorMessage.style.visibility === 'visible') {
+        errorMessage.style.visibility = 'hidden';
+    }
 });
 
 // Event listener for when the input field is focused (keyboard shows)
@@ -73,7 +85,6 @@ document.getElementById('itemInput').addEventListener('blur', function() {
         window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
     }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
 });
-
 
 // Function to add swipe functionality to a list item
 function addSwipeHandler(listItem) {

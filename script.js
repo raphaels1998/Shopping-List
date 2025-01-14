@@ -1,12 +1,18 @@
-// Show the list creation section when clicking on either circle
+let activeList = 'shoppingList'; // Default active list is shopping list
+
+// Show the list creation section and set the active list when clicking a circle
 document.getElementById('masterListCircle').addEventListener('click', function() {
     document.getElementById('listCreationSection').style.display = 'block'; // Show the list creation section
+    activeList = 'masterList'; // Set active list to Master List
     document.getElementById('itemInput').focus(); // Focus the input field
+    document.getElementById('shoppingList').innerHTML = ''; // Clear previous list items if any
 });
 
 document.getElementById('shoppingListCircle').addEventListener('click', function() {
     document.getElementById('listCreationSection').style.display = 'block'; // Show the list creation section
+    activeList = 'shoppingList'; // Set active list to Shopping List
     document.getElementById('itemInput').focus(); // Focus the input field
+    document.getElementById('shoppingList').innerHTML = ''; // Clear previous list items if any
 });
 
 // Add your existing code for adding items to the list
@@ -24,7 +30,9 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
                 return;
             }
 
-            const existingItems = document.querySelectorAll('#shoppingList li');
+            // Check if the item already exists in the active list
+            const listToCheck = document.getElementById(activeList);
+            const existingItems = listToCheck.querySelectorAll('li');
             for (let i = 0; i < existingItems.length; i++) {
                 const existingItemText = existingItems[i].querySelector('span').textContent;
                 if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {
@@ -54,7 +62,7 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
 
             listItem.appendChild(deleteButton);
 
-            document.getElementById('shoppingList').appendChild(listItem);
+            listToCheck.appendChild(listItem);
             itemInput.value = '';
 
             addSwipeHandler(listItem);

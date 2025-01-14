@@ -8,17 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to your shopping list</h1>
-        <p>You can add items to your shopping list below</p>
+        <h1>Welcome to your list manager</h1>
+        
+        <!-- Circles for Master List and Shopping List -->
+        <div class="circle-container">
+            <div class="circle" id="masterListCircle">Master List</div>
+            <div class="circle" id="shoppingListCircle">Shopping List</div>
+        </div>
 
-        <input type="text" id="itemInput" placeholder="Enter your item name.">
-        
-        <!-- Fixed closing tag for error message -->
-        <div id="error-message" class="error-message"></div>
-        
-        <ul id="shoppingList"></ul>
+        <!-- Create list section, initially hidden -->
+        <div id="listCreationSection" class="list-creation-section" style="display: none;">
+            <p>Enter food items to add to your list:</p>
+            <input type="text" id="itemInput" placeholder="Enter food item">
+            <div id="error-message" class="error-message"></div>
+            <ul id="shoppingList"></ul>
+        </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
+

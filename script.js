@@ -63,8 +63,9 @@ function addItemToList() {
         amountInput.type = 'number';
         amountInput.classList.add('amount-input');
         amountInput.placeholder = 'Qty';
-        amountInput.value = 1;  // Default quantity value
-        amountInput.min = 1;    // Minimum value for quantity
+        amountInput.value = 0;  // Default quantity value
+        amountInput.min = 0;    // Minimum value for quantity
+        amountInput.max = 999;    // Max value for quantity
 
         // Add an event listener to only allow numbers and show the numeric keypad
         amountInput.addEventListener('focus', function() {

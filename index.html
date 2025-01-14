@@ -8,31 +8,27 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to your list manager</h1>
+        <h1>Welcome to your shopping list</h1>
+        <p>You can add items to your shopping list below:</p>
 
-        <!-- Circles for Master List and Shopping List -->
-        <div class="circle-container">
-            <div class="circle" id="masterListCircle">Master List</div>
-            <div class="circle" id="shoppingListCircle">Shopping List</div>
-        </div>
-
-        <!-- Master List section, initially hidden -->
-        <div id="masterListSection" class="list-creation-section" style="display: none;">
-            <p>Enter food items for Master List:</p>
-            <input type="text" id="masterItemInput" placeholder="Enter food item">
-            <div id="masterErrorMessage" class="error-message"></div>
+        <!-- Master List Section -->
+        <div id="masterListSection">
+            <h2>Master List</h2>
+            <input type="text" id="masterListInput" placeholder="Enter an item for the master list">
+            <div id="masterListError" class="error-message"></div>
             <ul id="masterList"></ul>
         </div>
 
-        <!-- Shopping List section, initially hidden -->
-        <div id="shoppingListSection" class="list-creation-section" style="display: none;">
-            <p>Enter food items for Shopping List:</p>
-            <input type="text" id="shoppingItemInput" placeholder="Enter food item">
-            <div id="shoppingErrorMessage" class="error-message"></div>
+        <!-- Shopping List Section -->
+        <div id="shoppingListSection">
+            <h2>Shopping List</h2>
+            <input type="text" id="shoppingListInput" placeholder="Enter an item for your shopping list">
+            <div id="shoppingListError" class="error-message"></div>
             <ul id="shoppingList"></ul>
         </div>
     </div>
 
+    <!-- Link to external JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

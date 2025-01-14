@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to your shopping list</h1>
-    <p>You can add items to your shopping list below</p>
+    <div class="container">
+        <h1>Welcome to your shopping list</h1>
+        <p>You can add items to your shopping list below</p>
 
-    <input type = "text" id = "itemInput" placeholder = "enter an item, and press Enter to add it to your shopping list.">
+        <input type="text" id="itemInput" placeholder="Enter an item, and press Enter to add it to your shopping list.">
+        
+        <ul id="shoppingList"></ul>
+        
+        <div id="temporaryMessage" class="temporary-message"></div>
+    </div>
     
-    <ul id = "shoppingList" ></ul>
-	
-    <div id="temporaryMessage" class="temporary-message"></div>
-
     <script src="script.js"></script>
 </body>
 </html>

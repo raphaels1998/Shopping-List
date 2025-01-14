@@ -7,37 +7,9 @@ body {
 
 h1 {
     font-size: 24px;
-}
+} 
 
-.circle-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.circle {
-    width: 150px;
-    height: 150px;
-    background-color: #3498db;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
-
-.circle:hover {
-    background-color: #2980b9;
-}
-
-/* Input and list styling */
-#masterItemInput, #shoppingItemInput {
+#itemInput, #masterListInput, #shoppingListInput {
     width: 100%;
     max-width: 300px;
     padding: 10px;
@@ -47,7 +19,7 @@ h1 {
     border-radius: 5px;
 }
 
-#masterList, #shoppingList {
+#shoppingList, #masterList {
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -55,7 +27,7 @@ h1 {
     margin: 0 auto;
 }
 
-#masterList li, #shoppingList li {
+#shoppingList li, #masterList li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,11 +36,9 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
-    transition: transform 0.3s ease; /* Smooth transition for swipe */
-    position: relative;
 }
 
-#masterList li span, #shoppingList li span {
+#shoppingList li span, #masterList li span {
     flex-grow: 1;
     word-wrap: break-word;
 }
@@ -84,23 +54,37 @@ button {
     font-size: 14px;
 }
 
-/* Swipe effect styles */
-.swipe-item {
-    touch-action: none; /* Prevents screen scrolling while swiping */
+/* Style for the circles */
+#listSelector {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
 }
 
-.deleted {
-    transform: translateX(-100%); /* Move the item off-screen for deletion */
-    background-color: #f8d7da; /* Change color for deleted items */
-    opacity: 0.5;
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
 }
 
-/* Ensure screen does not slide when swiping */
-html, body {
-    overflow-x: hidden; /* Prevent horizontal scroll */
+/* Active circle */
+.active {
+    background-color: #2ecc71;
 }
 
-/* Style for the error message */
+/* List Section styles */
+.list-section {
+    display: none;
+}
+
 .error-message {
     color: red;
     font-size: 14px;
@@ -108,107 +92,22 @@ html, body {
     visibility: hidden;  /* Hidden by default */
 }
 
-/* Optional: Adding mobile responsive styles */
+/* Mobile responsiveness */
 @media screen and (max-width: 600px) {
-    #masterItemInput, #shoppingItemInput {
+    #masterListInput, #shoppingListInput {
         width: 100%;
     }
-
     #masterList, #shoppingList {
         width: 100%;
         max-width: 100%;
     }
-
     #masterList li, #shoppingList li {
         padding: 12px;
         font-size: 14px;
     }
-
     button {
         font-size: 12px;
     }
-}
-
-/* Updated Shopping List item styling */
-#shoppingList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease;
-    position: relative;
-}
-
-#shoppingList li span {
-    flex-grow: 1;
-    word-wrap: break-word;
-}
-
-.amount-input {
-    width: 50px; /* Set width of the number input field */
-    padding: 5px;
-    text-align: center;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-/* Ensure the delete button is aligned with the amount input */
-button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: darkred;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-/* Optional: Adding mobile responsive styles for the input */
-@media screen and (max-width: 600px) {
-    #shoppingList li {
-        font-size: 14px;
-    }
-
-    .amount-input {
-        width: 40px;
-    }
-
-    button {
-        font-size: 12px;
-    }
-}
-
-/* Style for the amount input field */
-.amount-input {
-    width: 50px;
-    padding: 5px;
-    text-align: center;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-left: 10px;
-    /* Ensures the input is only numeric and aligned properly */
-}
-
-/* Style for the list item with quantity and delete button */
-#shoppingList li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    transition: transform 0.3s ease;
-    position: relative;
 }
 
 

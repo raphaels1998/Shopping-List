@@ -1,3 +1,4 @@
+
 let activeList = '';  // To track which list is active
 
 // Show the Master List and Shopping List when the circles are clicked

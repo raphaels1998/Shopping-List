@@ -3,7 +3,11 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
     const itemValue = itemInput.value.trim();
     const errorMessage = document.getElementById('error-message');
 
+    // Check if the key pressed is "Enter"
     if (event.key === 'Enter') {
+        console.log('Enter key pressed');  // Debugging: log that Enter was pressed
+
+        // If the input value is not empty
         if (itemValue !== '') {
             // Ensure item input is not more than 25 characters
             if (itemValue.length > 25) {
@@ -17,6 +21,7 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
                 const existingItemText = existingItems[i].querySelector('span').textContent;
                 if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {  // Case-insensitive comparison
                     // Show error message for duplicate
+                    console.log('Duplicate found');  // Debugging: log that duplicate was found
                     errorMessage.textContent = 'This item already exists in the list.';
                     errorMessage.style.visibility = 'visible';  // Make the message visible
                     itemInput.value = ''; // Clear the input field
@@ -27,6 +32,7 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             // Hide the error message if item is added successfully
             errorMessage.style.visibility = 'hidden';
 
+            // Create a new list item
             const listItem = document.createElement('li');
             listItem.classList.add('swipe-item'); // Add swipe class to list item
 
@@ -50,10 +56,11 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
 
             // Append the list item to the shopping list
             document.getElementById('shoppingList').appendChild(listItem);
-            itemInput.value = ''; // Clear the input field
+            itemInput.value = ''; // Clear the input field after adding the item
 
-            // Add swipe handler to the list item
-            addSwipeHandler(listItem);
+            console.log('Item added:', itemValue);  // Debugging: log the added item
+        } else {
+            console.log('Input is empty');  // Debugging: log if the input is empty
         }
     }
 });
@@ -85,35 +92,4 @@ document.getElementById('itemInput').addEventListener('blur', function() {
         window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
     }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
 });
-
-// Function to add swipe functionality to a list item
-function addSwipeHandler(listItem) {
-    let startX;
-
-    listItem.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX; // Get the initial touch position
-        listItem.classList.remove('deleted'); // Ensure it doesn't remain deleted if touched again
-    });
-
-    listItem.addEventListener('touchmove', function(event) {
-        const currentX = event.touches[0].clientX;
-        const deltaX = currentX - startX;
-
-        if (deltaX < 0) { // Swiping left
-            listItem.style.transform = `translateX(${deltaX}px)`;
-        }
-    });
-
-    listItem.addEventListener('touchend', function(event) {
-        const deltaX = event.changedTouches[0].clientX - startX;
-
-        if (deltaX < -100) { // Swipe threshold to trigger delete
-            listItem.classList.add('deleted');
-            setTimeout(() => listItem.remove(), 300); // Remove after animation
-        } else {
-            listItem.style.transform = 'translateX(0)'; // Reset position
-        }
-    });
-}
-
 

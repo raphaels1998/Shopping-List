@@ -80,9 +80,8 @@ html, body {
     color: red;
     font-size: 14px;
     margin-top: 5px;
-    visibility: hidden;  /* Hide by default */
+    visibility: hidden;  /* Hidden by default */
 }
-
 
 /* Optional: Adding mobile responsive styles */
 @media screen and (max-width: 600px) {

@@ -24,6 +24,7 @@ function showShoppingList() {
     document.getElementById('masterListCircle').classList.remove('active');
 }
 
+// Add items to Master List
 document.getElementById('masterListInput').addEventListener('keydown', function(event) {
     const itemInput = document.getElementById('masterListInput');
     const itemValue = itemInput.value.trim();
@@ -63,6 +64,7 @@ document.getElementById('masterListInput').addEventListener('keydown', function(
     }
 });
 
+// Add items to the Shopping List (when clicked from Master List)
 function addToShoppingList(itemValue) {
     const listItem = document.createElement('li');
     
@@ -70,12 +72,13 @@ function addToShoppingList(itemValue) {
     itemText.textContent = itemValue;
     listItem.appendChild(itemText);
     
+    // Create amount input for quantity
     const amountInput = document.createElement('input');
     amountInput.type = 'number';
     amountInput.min = 1;
     amountInput.max = 999;
     amountInput.value = 1;
-    amountInput.inputMode = 'numeric';  // Ensure only numbers show up on the keyboard
+    amountInput.inputMode = 'numeric'; // Ensure numeric keypad appears on mobile
     listItem.appendChild(amountInput);
 
     const deleteButton = document.createElement('button');
@@ -92,18 +95,19 @@ function addToShoppingList(itemValue) {
     document.getElementById('shoppingList').appendChild(listItem);
 }
 
+// Add swipe functionality to delete items
 function addSwipeHandler(listItem) {
     let startX;
 
     listItem.addEventListener('touchstart', function(event) {
-        startX = event.touches[0].clientX; 
+        startX = event.touches[0].clientX;
     });
 
     listItem.addEventListener('touchmove', function(event) {
         const currentX = event.touches[0].clientX;
         const deltaX = currentX - startX;
 
-        if (deltaX < 0) { 
+        if (deltaX < 0) {
             listItem.style.transform = `translateX(${deltaX}px)`;
         }
     });
@@ -113,11 +117,12 @@ function addSwipeHandler(listItem) {
 
         if (deltaX < -100) { 
             listItem.classList.add('deleted');
-            setTimeout(() => listItem.remove(), 300);
+            setTimeout(() => listItem.remove(), 300); 
         } else {
             listItem.style.transform = 'translateX(0)';
         }
     });
 }
+
 
 

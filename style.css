@@ -1,8 +1,8 @@
 #shoppingList {
     list-style-type: none;
     padding: 0;
-    width: 100%; /* Ensures it takes the full width of the container */
-    max-width: 100%; /* Remove fixed width and make it flexible */
+    width: 100%; /* Ensure it takes full width of the container */
+    max-width: 300px; /* Optional: limits the list width */
 }
 
 #shoppingList li {
@@ -13,8 +13,10 @@
     border: 1px solid #ddd;
     padding: 8px;
     border-radius: 5px;
-    flex-wrap: wrap; /* Allows items to wrap to the next line */
-    word-wrap: break-word; /* Prevents overflow of long words */
+    flex-wrap: wrap; /* Allows the items to wrap to the next line */
+    word-wrap: break-word; /* Ensures long words break to avoid overflow */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation for swipe */
+    will-change: transform; /* Optimize for smooth swipe animations */
 }
 
 #shoppingList li span {
@@ -42,34 +44,35 @@ button {
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     text-align: center;
-    max-width: 100%; /* Make it flexible */
+    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
 
 #itemInput {
-    width: 100%; /* Use full width for flexibility */
-    padding: 10px; /* Add padding for better appearance */
+    width: 100%; /* Allow input to take full width */
+    max-width: 300px; /* Optional: limits input width */
+    padding: 10px;
+    border-radius: 5px;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 600px) {
-    #shoppingList li {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        align-items: flex-start; /* Align items to the start */
-    }
+/* Styles specific for swipeable list items */
+.swipe-item {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Ensure the list item moves smoothly */
+}
 
-    button {
-        margin-left: 0;
-        margin-top: 10px; /* Add margin for separation on smaller screens */
-    }
+/* Optional: You can add more swipe-to-delete effects like background color change */
+.swipe-item.swiping {
+    background-color: rgba(255, 0, 0, 0.1); /* Highlight item while swiping */
+}
 
-    #itemInput {
-        width: 100%; /* Full width on smaller screens */
-        font-size: 1em; /* Adjust font size for readability */
-    }
-
-    .temporary-message {
-        max-width: 100%; /* Ensure message takes up full width */
-    }
+.swipe-item.deleted {
+    opacity: 0; /* Fade out when deleting */
+    transform: translateX(-100%); /* Slide out to the left */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }

@@ -5,7 +5,7 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
 
         if (itemValue !== '') {
             if(itemValue.length > 25){
-                showTemporaryMessage('Please enter a food item');
+                showTemporaryMessage('Item must be 25 characters or fewer');
                 itemInput.value = '';
                 return;
             }
@@ -38,6 +38,14 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             // Add swipe handler to the list item
             addSwipeHandler(listItem);
         }
+    }
+});
+
+// Restrict input length to 25 characters while typing
+document.getElementById('itemInput').addEventListener('keyup', function(event) {
+    const itemInput = document.getElementById('itemInput');
+    if (itemInput.value.length > 25) {
+        itemInput.value = itemInput.value.substring(0, 25); // Truncate the input to 25 characters
     }
 });
 

@@ -1,8 +1,31 @@
+/* Basic Styles */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+
+#itemInput {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 #shoppingList {
     list-style-type: none;
     padding: 0;
-    width: 100%; /* Ensure it takes full width of the container */
-    max-width: 300px; /* Optional: limits the list width */
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 #shoppingList li {
@@ -10,69 +33,66 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    padding: 10px;
     border: 1px solid #ddd;
-    padding: 8px;
     border-radius: 5px;
-    flex-wrap: wrap; /* Allows the items to wrap to the next line */
-    word-wrap: break-word; /* Ensures long words break to avoid overflow */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation for swipe */
-    will-change: transform; /* Optimize for smooth swipe animations */
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease; /* Smooth transition */
+    position: relative;
 }
 
 #shoppingList li span {
-    flex-grow: 1; /* Makes the item text take up as much space as possible */
-    word-wrap: break-word; /* Prevents text overflow */
+    flex-grow: 1;
+    word-wrap: break-word;
 }
 
 button {
     margin-left: 10px;
     padding: 5px 10px;
     background-color: darkred;
-    color: black;
+    color: white;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    white-space: nowrap; /* Prevents the button text from wrapping */
+    font-size: 14px;
 }
 
-.temporary-message {
-    display: none;
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    text-align: center;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#itemInput {
-    width: 100%; /* Allow input to take full width */
-    max-width: 300px; /* Optional: limits input width */
-    padding: 10px;
-    border-radius: 5px;
-}
-
-/* Styles specific for swipeable list items */
+/* Swipe effect styles */
 .swipe-item {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Ensure the list item moves smoothly */
+    touch-action: none; /* Prevents screen scrolling while swiping */
 }
 
-/* Optional: You can add more swipe-to-delete effects like background color change */
-.swipe-item.swiping {
-    background-color: rgba(255, 0, 0, 0.1); /* Highlight item while swiping */
+.deleted {
+    transform: translateX(-100%); /* Move the item off-screen for deletion */
 }
 
-.swipe-item.deleted {
-    opacity: 0; /* Fade out when deleting */
-    transform: translateX(-100%); /* Slide out to the left */
-    transition: opacity 0.3s ease, transform 0.3s ease;
+#shoppingList li.deleted {
+    background-color: #f8d7da; /* Change color for deleted items */
+    opacity: 0.5;
+}
+
+/* Ensure screen does not slide when swiping */
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Optional: Adding mobile responsive styles */
+@media screen and (max-width: 600px) {
+    #itemInput {
+        width: 100%;
+    }
+
+    #shoppingList {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #shoppingList li {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+    }
 }

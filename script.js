@@ -20,7 +20,6 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             for (let i = 0; i < existingItems.length; i++) {
                 const existingItemText = existingItems[i].querySelector('span').textContent;
                 if (existingItemText.toLowerCase() === itemValue.toLowerCase()) {  // Case-insensitive comparison
-                    // Show error message for duplicate
                     console.log('Duplicate found');  // Debugging: log that duplicate was found
                     errorMessage.textContent = 'This item already exists in the list.';
                     errorMessage.style.visibility = 'visible';  // Make the message visible
@@ -39,19 +38,17 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             // Create and append the item text
             const itemText = document.createElement('span');
             itemText.textContent = itemValue;
+            listItem.appendChild(itemText);  // Append the span to the list item
 
             // Create the delete button
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.className = 'delete-button'; // Adding class for styling
-
-            // Event listener to remove the item when the button is clicked
             deleteButton.addEventListener('click', function() {
                 listItem.remove(); // Remove the item when clicked
             });
 
-            // Append both the item text and the delete button to the list item
-            listItem.appendChild(itemText);
+            // Append the delete button to the list item
             listItem.appendChild(deleteButton);
 
             // Append the list item to the shopping list

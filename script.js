@@ -56,6 +56,9 @@ document.getElementById('itemInput').addEventListener('keydown', function(event)
             itemInput.value = ''; // Clear the input field after adding the item
 
             console.log('Item added:', itemValue);  // Debugging: log the added item
+
+            // Add swipe functionality to the newly added list item
+            addSwipeHandler(listItem);
         } else {
             console.log('Input is empty');  // Debugging: log if the input is empty
         }
@@ -89,3 +92,43 @@ document.getElementById('itemInput').addEventListener('blur', function() {
         window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
     }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
 });
+
+// Function to add swipe functionality to a list item
+function addSwipeHandler(listItem) {
+    let startX;
+
+    // When touch starts, record the starting point
+    listItem.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX; // Initial touch point
+        listItem.classList.remove('deleted'); // Ensure the item is not in the deleted state
+        listItem.style.transition = 'none'; // Disable transition while moving
+    });
+
+    // While swiping, move the item horizontally
+    listItem.addEventListener('touchmove', function(event) {
+        const currentX = event.touches[0].clientX; // Current touch point
+        const deltaX = currentX - startX; // Distance moved in X direction
+        
+        // Only move the item left if swiping left
+        if (deltaX < 0) {
+            listItem.style.transform = `translateX(${deltaX}px)`; // Move the item
+        }
+    });
+
+    // When touch ends, decide whether to delete or reset the item
+    listItem.addEventListener('touchend', function(event) {
+        const deltaX = event.changedTouches[0].clientX - startX; // Distance moved after touch ends
+
+        // If moved enough (threshold), delete the item
+        if (deltaX < -100) {
+            listItem.classList.add('deleted');
+            listItem.style.transition = 'transform 0.3s ease-out'; // Add smooth transition for delete
+            listItem.style.transform = 'translateX(-100%)'; // Move item out of view to the left
+            setTimeout(() => listItem.remove(), 300); // Remove the item after the animation
+        } else {
+            listItem.style.transition = 'transform 0.3s ease-out'; // Smooth reset of position
+            listItem.style.transform = 'translateX(0)'; // Reset to original position if not swiped enough
+        }
+    });
+}
+

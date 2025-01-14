@@ -49,15 +49,20 @@ document.getElementById('itemInput').addEventListener('input', function(event) {
     }
 });
 
+// Event listener for when the input field is focused (keyboard shows)
 document.getElementById('itemInput').addEventListener('focus', function() {
-    // This will make sure that the page doesn't zoom in when the input field is focused
-    document.body.style.zoom = "100%"; 
+    document.body.style.zoom = '100%';  // Reset zoom to 100% when focusing
 });
 
+// Event listener for when the input field loses focus (keyboard hides)
 document.getElementById('itemInput').addEventListener('blur', function() {
-    // Zoom out once the input field is no longer focused
-    document.body.style.zoom = "100%";
+    // Delay setting zoom out after the input loses focus to avoid page movement
+    setTimeout(function() {
+        document.body.style.zoom = '100%';  // Reset zoom to 100% after typing
+        window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
+    }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
 });
+
 
 function showTemporaryMessage(message) {
     // Remove this function entirely since it's not needed anymore.

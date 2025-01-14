@@ -9,18 +9,26 @@
 <body>
     <div class="container">
         <h1>Welcome to your list manager</h1>
-        
+
         <!-- Circles for Master List and Shopping List -->
         <div class="circle-container">
             <div class="circle" id="masterListCircle">Master List</div>
             <div class="circle" id="shoppingListCircle">Shopping List</div>
         </div>
 
-        <!-- List creation section, initially hidden -->
-        <div id="listCreationSection" class="list-creation-section" style="display: none;">
-            <p>Enter food items to add to your list:</p>
-            <input type="text" id="itemInput" placeholder="Enter food item">
-            <div id="error-message" class="error-message"></div>
+        <!-- Master List section, initially hidden -->
+        <div id="masterListSection" class="list-creation-section" style="display: none;">
+            <p>Enter food items for Master List:</p>
+            <input type="text" id="masterItemInput" placeholder="Enter food item">
+            <div id="masterErrorMessage" class="error-message"></div>
+            <ul id="masterList"></ul>
+        </div>
+
+        <!-- Shopping List section, initially hidden -->
+        <div id="shoppingListSection" class="list-creation-section" style="display: none;">
+            <p>Enter food items for Shopping List:</p>
+            <input type="text" id="shoppingItemInput" placeholder="Enter food item">
+            <div id="shoppingErrorMessage" class="error-message"></div>
             <ul id="shoppingList"></ul>
         </div>
     </div>
@@ -28,4 +36,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
 

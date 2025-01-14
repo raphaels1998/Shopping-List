@@ -129,4 +129,60 @@ html, body {
     }
 }
 
+/* Updated Shopping List item styling */
+#shoppingList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+#shoppingList li span {
+    flex-grow: 1;
+    word-wrap: break-word;
+}
+
+.amount-input {
+    width: 50px; /* Set width of the number input field */
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Ensure the delete button is aligned with the amount input */
+button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Optional: Adding mobile responsive styles for the input */
+@media screen and (max-width: 600px) {
+    #shoppingList li {
+        font-size: 14px;
+    }
+
+    .amount-input {
+        width: 40px;
+    }
+
+    button {
+        font-size: 12px;
+    }
+}
+
 

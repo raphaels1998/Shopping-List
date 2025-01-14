@@ -37,7 +37,7 @@ h1 {
 }
 
 /* Input and list styling */
-#itemInput {
+#masterItemInput, #shoppingItemInput {
     width: 100%;
     max-width: 300px;
     padding: 10px;
@@ -47,7 +47,7 @@ h1 {
     border-radius: 5px;
 }
 
-#shoppingList {
+#masterList, #shoppingList {
     list-style-type: none;
     padding: 0;
     width: 100%;
@@ -55,7 +55,7 @@ h1 {
     margin: 0 auto;
 }
 
-#shoppingList li {
+#masterList li, #shoppingList li {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +68,7 @@ h1 {
     position: relative;
 }
 
-#shoppingList li span {
+#masterList li span, #shoppingList li span {
     flex-grow: 1;
     word-wrap: break-word;
 }
@@ -87,7 +87,6 @@ button {
 /* Swipe effect styles */
 .swipe-item {
     touch-action: none; /* Prevents screen scrolling while swiping */
-    cursor: pointer; /* Indicate that the item is interactive */
 }
 
 .deleted {
@@ -111,16 +110,16 @@ html, body {
 
 /* Optional: Adding mobile responsive styles */
 @media screen and (max-width: 600px) {
-    #itemInput {
+    #masterItemInput, #shoppingItemInput {
         width: 100%;
     }
 
-    #shoppingList {
+    #masterList, #shoppingList {
         width: 100%;
         max-width: 100%;
     }
 
-    #shoppingList li {
+    #masterList li, #shoppingList li {
         padding: 12px;
         font-size: 14px;
     }
@@ -129,4 +128,5 @@ html, body {
         font-size: 12px;
     }
 }
+
 

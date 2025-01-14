@@ -25,18 +25,12 @@
 button {
     margin-left: 10px;
     padding: 5px 10px;
-    background-color: darkyellow;
-    color: white;
+    color: darkred;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     white-space: nowrap; /* Prevents the button text from wrapping */
 }
-
-button:hover {
-    background-color: darkred;
-}
-
 .temporary-message {
     display: none;
     background-color: #f8d7da;

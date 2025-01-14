@@ -64,10 +64,6 @@ document.getElementById('itemInput').addEventListener('blur', function() {
 });
 
 
-function showTemporaryMessage(message) {
-    // Remove this function entirely since it's not needed anymore.
-}
-
 // Function to add swipe functionality to a list item
 function addSwipeHandler(listItem) {
     let startX;

@@ -2,34 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to your Shopping App</h1>
-        <p>Select a list below to start adding items:</p>
-        
-        <!-- Two clickable circles -->
-        <div id="listSelector">
-            <div class="circle" id="masterListCircle">Master List</div>
-            <div class="circle" id="shoppingListCircle">Shopping List</div>
-        </div>
+        <h1>Welcome to your shopping list</h1>
+        <p>You can add items to your shopping list below</p>
+
+        <!-- Circles to toggle between Master List and Shopping List -->
+        <div id="masterListCircle" class="circle">Master List</div>
+        <div id="shoppingListCircle" class="circle">Shopping List</div>
 
         <!-- Master List Section -->
         <div id="masterListSection" class="list-section">
-            <h2>Master List</h2>
-            <input type="text" id="masterListInput" placeholder="Enter your item for Master List">
-            <div id="masterListError" class="error-message"></div>
+            <input type="text" id="masterListInput" placeholder="Enter an item">
             <ul id="masterList"></ul>
+            <div id="masterListError" class="error-message"></div>
         </div>
 
         <!-- Shopping List Section -->
         <div id="shoppingListSection" class="list-section">
-            <h2>Shopping List</h2>
-            <input type="text" id="shoppingListInput" placeholder="Enter your item for Shopping List">
-            <div id="shoppingListError" class="error-message"></div>
+            <input type="text" id="shoppingListInput" placeholder="Search or add to shopping list">
             <ul id="shoppingList"></ul>
         </div>
     </div>

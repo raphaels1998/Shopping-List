@@ -1,51 +1,77 @@
 document.getElementById('itemInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
+        event.preventDefault();
         const itemInput = document.getElementById('itemInput');
         const itemValue = itemInput.value.trim();
 
-        if (itemValue !== '') {
-	    
-            if(itemValue.length > 25){
-		showTemporaryMessage('Please enter a food item');
-		itemInput.value = '';
-		return;
-	    }
-
-            const listItem = document.createElement('li');
-            
-            // Create and append the item text
-            const itemText = document.createElement('span');
-            itemText.textContent = itemValue;
-
-            // Create the delete button
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.className = 'delete-button'; // Adding class for styling
-
-            // Event listener to remove the item when the button is clicked
-            deleteButton.addEventListener('click', function() {
-                listItem.remove(); // Remove the item when clicked
-            });
-
-            // Append both the item text and the delete button to the list item
-            listItem.appendChild(itemText);
-            listItem.appendChild(deleteButton);
-
-            // Append the list item to the shopping list
-            document.getElementById('shoppingList').appendChild(listItem);
+        if (itemValue.length === 0) {
+            showTemporaryMessage('Please enter an item.');
+        } else if (itemValue.length > 25) {
+            showTemporaryMessage('Item is too long. Please enter a shorter item.');
+        } else {
+            addItemToList(itemValue);
             itemInput.value = ''; // Clear the input field
         }
     }
 });
 
+function addItemToList(itemValue) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('swipe-item');
+
+    const itemText = document.createElement('span');
+    itemText.textContent = itemValue;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.className = 'delete-button';
+    deleteButton.addEventListener('click', function() {
+        listItem.remove(); // Remove the item when clicked
+    });
+
+    listItem.appendChild(itemText);
+    listItem.appendChild(deleteButton);
+    document.getElementById('shoppingList').appendChild(listItem);
+
+    // Add swipe functionality
+    addSwipeHandler(listItem);
+}
+
+function addSwipeHandler(listItem) {
+    let startX;
+
+    listItem.addEventListener('touchstart', function(event) {
+        startX = event.touches[0].clientX; // Get the initial touch position
+    });
+
+    listItem.addEventListener('touchmove', function(event) {
+        const currentX = event.touches[0].clientX;
+        const deltaX = currentX - startX;
+
+        if (deltaX < 0) { // Swiping left
+            listItem.style.transform = `translateX(${deltaX}px)`;
+        }
+    });
+
+    listItem.addEventListener('touchend', function(event) {
+        const deltaX = event.changedTouches[0].clientX - startX;
+
+        if (deltaX < -100) { // Swipe threshold to trigger delete
+            listItem.style.transform = 'translateX(-100%)';
+            listItem.style.opacity = '0';
+            setTimeout(() => listItem.remove(), 300); // Remove after animation
+        } else {
+            listItem.style.transform = 'translateX(0)'; // Reset position
+        }
+    });
+}
 
 function showTemporaryMessage(message) {
     const messageDiv = document.getElementById('temporaryMessage');
     messageDiv.textContent = message;
-    messageDiv.style.display = 'block'; // Make the message visible
+    messageDiv.style.display = 'block';
 
-    // Hide the message after 3 seconds
     setTimeout(function() {
         messageDiv.style.display = 'none';
-    }, 3000); // 3000 ms = 3 seconds
+    }, 3000);
 }

@@ -89,4 +89,3 @@ document.getElementById('itemInput').addEventListener('blur', function() {
         window.scrollTo(0, 0);  // Scroll back to the top (ensures no unwanted page scroll)
     }, 300); // Delay (optional) to make sure the keyboard closes before resetting zoom
 });
-

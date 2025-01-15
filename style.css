@@ -61,6 +61,13 @@ button {
 }
 
 /* Circles (for toggling between lists) */
+#listSelector {
+    display: flex;
+    justify-content: space-between; /* Ensure circles are spaced side by side */
+    gap: 20px; /* Space between the circles */
+    margin-bottom: 30px;
+}
+
 .circle {
     width: 150px;
     height: 150px;
@@ -73,7 +80,6 @@ button {
     align-items: center;
     cursor: pointer;
     text-align: center;
-    margin: 10px;
 }
 
 .active {
@@ -117,6 +123,13 @@ button {
     button {
         font-size: 12px;
     }
+
+    #listSelector {
+        flex-direction: row; /* Keep circles side by side on mobile */
+        justify-content: center; /* Center the circles */
+        gap: 10px; /* Adjust gap between the circles */
+    }
 }
+
 
 

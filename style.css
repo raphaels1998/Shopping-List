@@ -11,9 +11,10 @@ h1 {
 
 .container {
     display: flex;
-    flex-wrap: wrap; /* Allows the sections to wrap when necessary */
-    gap: 20px;
-    justify-content: center;
+    justify-content: space-between; /* Align lists side by side */
+    gap: 20px; /* Space between the lists */
+    flex-wrap: wrap; /* Allow the sections to wrap when the screen size is small */
+    margin-top: 20px;
 }
 
 #masterListInput {
@@ -26,13 +27,7 @@ h1 {
     border-radius: 5px;
 }
 
-#shoppingList {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#masterList {
+#shoppingList, #masterList {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -88,12 +83,12 @@ button {
 /* Section for displaying Master List and Shopping List side by side */
 .list-section {
     display: none;
-    width: 100%;
-    max-width: 500px; /* Limit max width for better layout */
+    width: 48%; /* Make each section take up 48% of the container width */
+    max-width: 500px; /* Limit the maximum width */
 }
 
 #masterListSection, #shoppingListSection {
-    flex: 1; /* Take up equal space in the container */
+    flex: 1; /* Flex setting to ensure equal distribution of space */
 }
 
 .error-message {
@@ -106,12 +101,13 @@ button {
 /* Mobile responsiveness */
 @media screen and (max-width: 600px) {
     .container {
-        flex-direction: column; /* Stack the sections on mobile */
+        flex-direction: column; /* Stack the sections vertically on small screens */
         align-items: center;
     }
 
     .list-section {
         max-width: 100%; /* Allow full width on small screens */
+        width: 100%;
     }
 
     #masterListInput, #shoppingListInput {
@@ -122,4 +118,5 @@ button {
         font-size: 12px;
     }
 }
+
 

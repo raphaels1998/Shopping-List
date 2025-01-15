@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dynamic List with User Input</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping & Master List</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <button class="list-button" id="shoppingListBtn">Shopping List</button>
+        <button class="list-button" id="masterListBtn">Master List</button>
+        
+        <!-- Shopping List Section -->
+        <div class="list-section" id="shoppingListSection">
+            <h2>Shopping List</h2>
+            <input type="text" id="shoppingInput" placeholder="Add item to shopping list" />
+            <button id="addShoppingItem">Add Item</button>
+            <ul id="shoppingList"></ul>
+        </div>
 
-  <!-- Button Group -->
-  <div class="btn-group" role="group" aria-label="Button Toggle Group">
-    <button class="btn selected" id="btnMasterlist">Masterlist</button>
-    <button class="btn" id="btnShoppingList">Shopping List</button>
-  </div>
+        <!-- Master List Section -->
+        <div class="list-section" id="masterListSection">
+            <h2>Master List</h2>
+            <input type="text" id="masterInput" placeholder="Add item to master list" />
+            <button id="addMasterItem">Add Item</button>
+            <ul id="masterList"></ul>
+        </div>
+    </div>
 
-  <!-- Input Section for New Item -->
-  <div>
-    <input type="text" id="newItemInput" placeholder="Enter new item" class="form-control">
-    <button id="addItemButton" class="btn">Add Item</button>
-  </div>
-
-  <!-- Content Area for List -->
-  <div id="contentArea" class="content">
-    <!-- Initially, no pre-existing items are displayed -->
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

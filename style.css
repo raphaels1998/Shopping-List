@@ -9,6 +9,35 @@ h1 {
     margin-bottom: 10px;
 }
 
+.header {
+    margin-bottom: 20px;
+}
+
+#listSelector {
+    display: flex;
+    justify-content: space-between; /* Ensure circles are spaced side by side */
+    gap: 20px; /* Space between the circles */
+    margin-bottom: 30px;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+}
+
+.active {
+    background-color: #2ecc71;
+}
+
 .container {
     display: flex;
     justify-content: space-between; /* Align lists side by side */
@@ -59,32 +88,6 @@ button {
     font-size: 14px;
 }
 
-/* Circles (for toggling between lists) */
-#listSelector {
-    display: flex;
-    justify-content: space-between; /* Ensure circles are spaced side by side */
-    gap: 20px; /* Space between the circles */
-    margin-bottom: 30px;
-}
-
-.circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: white;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    text-align: center;
-}
-
-.active {
-    background-color: #2ecc71;
-}
-
 /* Section for displaying Master List and Shopping List side by side */
 .list-section {
     display: none;
@@ -130,6 +133,4 @@ button {
         margin-bottom: 20px;
     }
 }
-
-
 

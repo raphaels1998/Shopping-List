@@ -1,64 +1,17 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    margin: 0;
+/* Ensure that interactive elements (like buttons) are on top */
+button {
+    position: relative; /* Ensure buttons are not being overlapped */
+    z-index: 10; /* Bring buttons on top */
 }
 
-h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.header {
-    margin-bottom: 20px;
-}
-
-#listSelector {
-    display: flex;
-    justify-content: space-between; /* Ensure circles are spaced side by side */
-    gap: 20px; /* Space between the circles */
-    margin-bottom: 30px;
-}
-
-.circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #3498db;
-    color: white;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    text-align: center;
-}
-
-.active {
-    background-color: #2ecc71;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between; /* Align lists side by side */
-    gap: 20px; /* Space between the lists */
-    margin-top: 20px;
-}
-
-#masterListInput {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#shoppingList, #masterList {
+/* Make sure the list items are properly aligned */
+#masterList, #shoppingList {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative; /* Prevent overlap issues */
 }
 
 #shoppingList li, #masterList li {
@@ -70,67 +23,56 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+    position: relative; /* Make sure list items are clickable */
 }
 
-#shoppingList li span, #masterList li span {
-    flex-grow: 1;
-    word-wrap: break-word;
-}
-
-button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: darkred;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-/* Section for displaying Master List and Shopping List side by side */
-.list-section {
+/* Hide search input in Shopping List */
+#shoppingListInput {
     display: none;
-    width: 48%; /* Make each section take up 48% of the container width */
-    max-width: 500px; /* Limit the maximum width */
 }
 
-#masterListSection, #shoppingListSection {
-    flex: 1; /* Flex setting to ensure equal distribution of space */
+/* Style for the circles (to be side by side) */
+#listSelector {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-.error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-    visibility: hidden;
+.circle {
+    width: 120px; /* Adjust size to fit well on mobile */
+    height: 120px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 10px; /* Space out the circles */
 }
 
-/* Mobile responsiveness (for mobile-only use) */
+.active {
+    background-color: #2ecc71;
+}
+
+/* Responsiveness */
 @media screen and (max-width: 600px) {
-    .container {
-        flex-direction: row; /* Keep the lists side by side */
-        justify-content: space-between; /* Ensure equal spacing between the lists */
-    }
-
-    .list-section {
-        max-width: 100%; /* Allow full width on small screens */
-        width: 48%; /* Make sections take up 48% of the container width */
-    }
-
     #masterListInput, #shoppingListInput {
         width: 100%;
     }
-
+    #masterList, #shoppingList {
+        width: 100%;
+        max-width: 100%;
+    }
+    #masterList li, #shoppingList li {
+        padding: 12px;
+        font-size: 14px;
+    }
     button {
         font-size: 12px;
-    }
-
-    #listSelector {
-        flex-direction: row; /* Keep circles side by side on mobile */
-        justify-content: center; /* Center the circles */
-        gap: 20px; /* Adjust gap between the circles */
-        margin-bottom: 20px;
     }
 }
 

@@ -13,7 +13,6 @@ h1 {
     display: flex;
     justify-content: space-between; /* Align lists side by side */
     gap: 20px; /* Space between the lists */
-    flex-wrap: wrap; /* Allow the sections to wrap when the screen size is small */
     margin-top: 20px;
 }
 
@@ -104,22 +103,22 @@ button {
     visibility: hidden;
 }
 
-/* Mobile responsiveness */
+/* Mobile responsiveness (for mobile-only use) */
 @media screen and (max-width: 600px) {
     .container {
-        flex-direction: column; /* Stack the sections vertically on small screens */
-        align-items: center;
+        flex-direction: row; /* Keep the lists side by side */
+        justify-content: space-between; /* Ensure equal spacing between the lists */
     }
 
     .list-section {
         max-width: 100%; /* Allow full width on small screens */
-        width: 100%;
+        width: 48%; /* Make sections take up 48% of the container width */
     }
 
     #masterListInput, #shoppingListInput {
         width: 100%;
     }
-    
+
     button {
         font-size: 12px;
     }
@@ -127,7 +126,8 @@ button {
     #listSelector {
         flex-direction: row; /* Keep circles side by side on mobile */
         justify-content: center; /* Center the circles */
-        gap: 10px; /* Adjust gap between the circles */
+        gap: 20px; /* Adjust gap between the circles */
+        margin-bottom: 20px;
     }
 }
 

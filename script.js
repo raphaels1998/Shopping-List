@@ -8,6 +8,7 @@ document.getElementById('masterListBtn').addEventListener('click', function() {
     document.getElementById('shoppingListSection').style.display = 'none';
 });
 
+
 document.getElementById('addShoppingItem').addEventListener('click', function() {
     const shoppingInput = document.getElementById('shoppingInput').value;
     if (shoppingInput.trim() !== '') {
@@ -28,5 +29,6 @@ document.getElementById('addMasterItem').addEventListener('click', function() {
     }
 });
 
-// Default to show the Shopping List first
-document.getElementById('shoppingListSection').style.display = 'block';
+// Default to show the Shopping List first and hide the Master List
+document.getElementById('shoppingListSection').style.display = 'block'; // Display shopping list initially
+document.getElementById('masterListSection').style.display = 'none'; // Hide master list initially

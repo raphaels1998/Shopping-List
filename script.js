@@ -8,24 +8,31 @@ document.getElementById('masterListBtn').addEventListener('click', function() {
     document.getElementById('shoppingListSection').style.display = 'none';
 });
 
-
-document.getElementById('addShoppingItem').addEventListener('click', function() {
-    const shoppingInput = document.getElementById('shoppingInput').value;
-    if (shoppingInput.trim() !== '') {
-        const li = document.createElement('li');
-        li.textContent = shoppingInput;
-        document.getElementById('shoppingList').appendChild(li);
-        document.getElementById('shoppingInput').value = ''; // clear input field
+// Handle the "Enter" key for Shopping List input
+document.getElementById('shoppingInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const shoppingInput = document.getElementById('shoppingInput').value;
+        if (shoppingInput.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = shoppingInput;
+            document.getElementById('shoppingList').appendChild(li);
+            document.getElementById('shoppingInput').value = ''; // clear input field
+        }
+        event.preventDefault(); // Prevent form submission or other default actions when Enter is pressed
     }
 });
 
-document.getElementById('addMasterItem').addEventListener('click', function() {
-    const masterInput = document.getElementById('masterInput').value;
-    if (masterInput.trim() !== '') {
-        const li = document.createElement('li');
-        li.textContent = masterInput;
-        document.getElementById('masterList').appendChild(li);
-        document.getElementById('masterInput').value = ''; // clear input field
+// Handle the "Enter" key for Master List input
+document.getElementById('masterInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const masterInput = document.getElementById('masterInput').value;
+        if (masterInput.trim() !== '') {
+            const li = document.createElement('li');
+            li.textContent = masterInput;
+            document.getElementById('masterList').appendChild(li);
+            document.getElementById('masterInput').value = ''; // clear input field
+        }
+        event.preventDefault(); // Prevent form submission or other default actions when Enter is pressed
     }
 });
 

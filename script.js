@@ -1,3 +1,38 @@
+// Initially hide both sections and show the Master List section
+document.getElementById('masterListSection').style.display = 'none';
+document.getElementById('shoppingListSection').style.display = 'none';
+
+// Add event listeners to the circles to toggle between the lists
+document.getElementById('masterListCircle').addEventListener('click', function() {
+    showMasterList();
+});
+document.getElementById('shoppingListCircle').addEventListener('click', function() {
+    showShoppingList();
+});
+
+function showMasterList() {
+    // Show the Master List section and hide the Shopping List section
+    document.getElementById('masterListSection').style.display = 'block';
+    document.getElementById('shoppingListSection').style.display = 'none';
+    
+    // Make the Master List circle active
+    document.getElementById('masterListCircle').classList.add('active');
+    document.getElementById('shoppingListCircle').classList.remove('active');
+}
+
+function showShoppingList() {
+    // Show the Shopping List section and hide the Master List section
+    document.getElementById('shoppingListSection').style.display = 'block';
+    document.getElementById('masterListSection').style.display = 'none';
+    
+    // Hide the input field in the Shopping List
+    document.getElementById('shoppingListInput').style.display = 'none';
+
+    // Make the Shopping List circle active
+    document.getElementById('shoppingListCircle').classList.add('active');
+    document.getElementById('masterListCircle').classList.remove('active');
+}
+
 // Function to handle adding items to the Master List
 document.getElementById('masterListInput').addEventListener('keydown', function(event) {
     const itemInput = document.getElementById('masterListInput');
@@ -95,6 +130,5 @@ function addToShoppingList(itemValue) {
     // Clear the input field in the shopping list section
     shoppingListInput.value = '';
 }
-
 
 

@@ -3,23 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Button Toggle Example</title>
+  <title>Dynamic List with User Input</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- Button Group -->
-  <div class="btn-group" role="group" aria-label="Basic toggle button group">
+  <div class="btn-group" role="group" aria-label="Button Toggle Group">
     <button class="btn selected" id="btnMasterlist">Masterlist</button>
     <button class="btn" id="btnShoppingList">Shopping List</button>
   </div>
 
+  <!-- Input Section for New Item -->
+  <div>
+    <input type="text" id="newItemInput" placeholder="Enter new item" class="form-control">
+    <button id="addItemButton" class="btn">Add Item</button>
+  </div>
+
+  <!-- Content Area for List -->
+  <div id="contentArea" class="content">
+    <!-- Initially, no pre-existing items are displayed -->
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
-</html>
-
-
-

@@ -22,7 +22,7 @@ document.getElementById('shoppingInput').addEventListener('keydown', function(ev
             document.getElementById('shoppingList').appendChild(li);
             document.getElementById('shoppingInput').value = ''; // Clear input field
         }
-        event.preventDefault(); // Prevent form submission or other default actions when Enter is pressed
+        event.preventDefault(); // Prevent the default behavior (form submit, etc.) when Enter is pressed
     }
 });
 
@@ -36,6 +36,6 @@ document.getElementById('masterInput').addEventListener('keydown', function(even
             document.getElementById('masterList').appendChild(li);
             document.getElementById('masterInput').value = ''; // Clear input field
         }
-        event.preventDefault(); // Prevent form submission or other default actions when Enter is pressed
+        event.preventDefault(); // Prevent the default behavior (form submit, etc.) when Enter is pressed
     }
 });

@@ -1,32 +1,44 @@
-
-   
+/* Body styling */
 body {
     background-color: black;
     color: white;
-    font-family: Ariel, sans-serif;
+    font-family: Arial, sans-serif; /* Corrected 'Ariel' to 'Arial' */
     margin: 0;
     padding: 0;
 }
 
+/* Styling for input fields */
 input { 
-   text-transform: lowercase;
+    text-transform: lowercase;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Adds a border to inputs */
+    border-radius: 5px; /* Rounds the edges of the input */
+    margin-top: 10px;
+    background-color: #333; /* Dark background for the input field */
+    color: white; /* White text in input fields */
+    width: 100%; /* Makes the input field take the full width */
+    box-sizing: border-box; /* Ensures padding doesn't overflow input box */
 }
+
 /* Hide both lists initially */
 .list {
     display: none;
     margin-top: 20px;
+    padding-left: 20px;
 }
 
+/* Button container */
 .button-container {
     text-align: center;
 }
 
-/* Style for the buttons */
+/* Button styling */
 button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: dark-grey;
+    background-color: #555; /* Dark grey (valid color) */
     color: white;
     border: none;
     border-radius: 5px;
@@ -35,5 +47,18 @@ button {
 }
 
 button:hover {
-    background-color: medium-grey;
-} 
+    background-color: #888; /* Lighter grey on hover */
+}
+
+/* Additional styles for list items (optional) */
+ul {
+    list-style-type: none; /* Removes bullets */
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    background-color: #444; /* Dark background for list items */
+    border-radius: 3px; /* Slight rounding for list items */
+    margin-bottom: 5px;
+}

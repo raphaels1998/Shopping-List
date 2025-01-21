@@ -3,27 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping & Master List</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Toggle Lists</title>
+    <style>
+        /* Hide both lists initially */
+        .list {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Style for the buttons */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <button class="list-button" id="shoppingListBtn">Shopping List</button>
-        <button class="list-button" id="masterListBtn">Master List</button>
-        
-        <!-- Shopping List Section -->
-        <div class="list-section" id="shoppingListSection">
-            <input type="text" id="shoppingInput" placeholder="Add item to shopping list" />
-            <ul id="shoppingList"></ul>
-        </div>
 
-        <!-- Master List Section -->
-        <div class="list-section" id="masterListSection">
-            <input type="text" id="masterInput" placeholder="Add item to master list" />
-            <ul id="masterList"></ul>
-        </div>
-    </div>
+    <!-- Buttons to toggle lists -->
+    <button onclick="showList('master')">Show Master List</button>
+    <button onclick="showList('shopping')">Show Shopping List</button>
 
-    <script src="script.js"></script>
+    <!-- Master List -->
+    <ul id="master-list" class="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+
+    <!-- Shopping List -->
+    <ul id="shopping-list" class="list">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Carrot</li>
+        <li>Milk</li>
+    </ul>
+
+    
+
 </body>
 </html>

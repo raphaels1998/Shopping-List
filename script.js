@@ -37,10 +37,17 @@ function addItem(listType) {
 document.addEventListener('DOMContentLoaded', () => {
     showList('master'); // Show master list by default
 });  
-document.getElementById('inputValue').addEventListener('keydown', function(event) {
-        
+
+// Add event listeners for both input fields
+document.getElementById('master-input').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-                addItem(listType);
+        addItem('master'); // Pass 'master' to the addItem function
     }
 });
+
+document.getElementById('shopping-input').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        addItem('shopping'); // Pass 'shopping' to the addItem function
+    }
+})
     

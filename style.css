@@ -7,8 +7,10 @@ body {
     margin: 0;
     padding: 0;
 }
-    
 
+input { 
+   text-transform: lowercase;
+}
 /* Hide both lists initially */
 .list {
     display: none;
@@ -24,7 +26,7 @@ button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: darkgrey;
+    background-color: dark-grey;
     color: white;
     border: none;
     border-radius: 5px;
@@ -33,5 +35,5 @@ button {
 }
 
 button:hover {
-    background-color: #111111;
+    background-color: medium-grey;
 } 

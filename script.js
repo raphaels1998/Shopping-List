@@ -1,18 +1,19 @@
 // Function to show the corresponding list based on the button clicked
 function showList(listType) {
-    // Hide both lists and input fields initially
-    document.getElementById('master-list').style.display = 'none';
-    document.getElementById('shopping-list').style.display = 'none';
+    // Hide both list sections and their inputs
+    document.getElementById('master-list-section').classList.remove('active');
+    document.getElementById('shopping-list-section').classList.remove('active');
+
     document.getElementById('master-input').style.display = 'none';
     document.getElementById('shopping-input').style.display = 'none';
 
-    // Show the corresponding list and input field based on the listType parameter
+    // Show the corresponding list section and its input based on the listType parameter
     if (listType === 'master') {
-        document.getElementById('master-list').style.display = 'block';
-        document.getElementById('master-input').style.display = 'inline-block';  // Show input for Master List
+        document.getElementById('master-list-section').classList.add('active');
+        document.getElementById('master-input').style.display = 'inline-block'; // Show input for Master List
     } else if (listType === 'shopping') {
-        document.getElementById('shopping-list').style.display = 'block';
-        document.getElementById('shopping-input').style.display = 'inline-block';  // Show input for Shopping List
+        document.getElementById('shopping-list-section').classList.add('active');
+        document.getElementById('shopping-input').style.display = 'inline-block'; // Show input for Shopping List
     }
 }
 

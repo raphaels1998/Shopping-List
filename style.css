@@ -21,11 +21,21 @@ input {
     box-sizing: border-box; /* Ensures padding doesn't overflow input box */
 }
 
-/* Hide both lists initially */
-.list {
+/* Initially hide both list sections */
+.list-section {
+    display: none; /* All list sections are hidden by default */
+}
+
+/* Initially hide both lists and inputs */
+#master-list, #shopping-list {
     display: none;
     margin-top: 20px;
     padding-left: 20px;
+}
+
+/* Initially hide the input fields */
+#master-input, #shopping-input {
+    display: none;
 }
 
 /* Button container */
@@ -63,3 +73,10 @@ li {
     border-radius: 3px; /* Slight rounding for list items */
     margin-bottom: 5px;
 }
+
+/* Active class for showing a list section */
+.list-section.active {
+    display: block; /* Shows the list section when it has the "active" class */
+}
+
+

@@ -29,8 +29,6 @@ function showPopup(message) {
     }, 3000); // Remove the pop-up after 3 seconds
 }
 
-
-
 // Function to add an item to the selected list
 function addItem(listType) {
     let input, list;
@@ -48,16 +46,27 @@ function addItem(listType) {
     // Validate input: only letters, max 20 characters
     const regex = /^[A-Za-z]{1,20}$/;
     if (regex.test(value)) {
-        const li = document.createElement('li');
-        li.textContent = value;
-        list.appendChild(li);
+        // Check if the item already exists in the list
+        const items = list.getElementsByTagName('li');
+        let duplicate = false;
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].textContent === value) {
+                duplicate = true;
+                break;
+            }
+        }
+
+        if (!duplicate) {
+            const li = document.createElement('li');
+            li.textContent = value;
+            list.appendChild(li);
+        } else {
+            showPopup("Duplicate item. Please enter a unique item.");
+        }
     } else {
         showPopup("Invalid input. Please enter only letters (max 20 characters).");
     }
     input.value = ''; // Clear the input field
-
-    
-    
 }
 
 // Add event listeners for both input fields

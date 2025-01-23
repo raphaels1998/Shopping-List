@@ -1,41 +1,25 @@
-/* Body styling */
-body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif; /* Corrected 'Ariel' to 'Arial' */
-    margin: 0;
-    padding: 0;
-}
-
 /* Styling for input fields */
 input { 
     text-transform: lowercase;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc; /* Adds a border to inputs */
-    border-radius: 5px; /* Rounds the edges of the input */
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin-top: 10px;
-    background-color: #333; /* Dark background for the input field */
-    color: white; /* White text in input fields */
-    width: 100%; /* Makes the input field take the full width */
-    box-sizing: border-box; /* Ensures padding doesn't overflow input box */
+    background-color: #333;
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Initially hide both list sections */
 .list-section {
-    display: none; /* All list sections are hidden by default */
+    display: none;
 }
 
-/* Initially hide both lists and inputs */
-#master-list, #shopping-list {
-    display: none;
-    margin-top: 20px;
-    padding-left: 20px;
-}
-
-/* Initially hide the input fields */
-#master-input, #shopping-input {
-    display: none;
+/* Show the active list section */
+.list-section.active {
+    display: block;
 }
 
 /* Button container */
@@ -48,35 +32,29 @@ button {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #555; /* Dark grey (valid color) */
+    background-color: #555;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 button:hover {
-    background-color: #888; /* Lighter grey on hover */
+    background-color: #888;
 }
 
-/* Additional styles for list items (optional) */
+/* Additional styles for list items */
 ul {
-    list-style-type: none; /* Removes bullets */
+    list-style-type: none;
     padding: 0;
 }
 
 li {
     padding: 5px;
-    background-color: #444; /* Dark background for list items */
-    border-radius: 3px; /* Slight rounding for list items */
+    background-color: #444;
+    border-radius: 3px;
     margin-bottom: 5px;
 }
-
-/* Active class for showing a list section */
-.list-section.active {
-    display: block; /* Shows the list section when it has the "active" class */
-}
-
 

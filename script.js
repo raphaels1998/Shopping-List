@@ -73,10 +73,10 @@ function addItem(listType) {
 
             list.appendChild(li);
         } else {
-            showPopup("Duplicate item. Please enter a unique item.");
+            showPopup("Duplicate item.");
         }
     } else {
-        showPopup("Invalid input. Please enter only letters (max 20 characters).");
+        showPopup("Invalid input, (max 20 charchters).");
     }
     input.value = ''; // Clear the input field
 }

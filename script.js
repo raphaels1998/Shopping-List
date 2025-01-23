@@ -64,6 +64,7 @@ function addItem(listType) {
             if (listType === 'master') {
                 const addButton = document.createElement('button');
                 addButton.textContent = "Add to Cart";
+                addButton.classList.add('add to cart');
                 addButton.onclick = function() {
                     addToCart(value);
                 };

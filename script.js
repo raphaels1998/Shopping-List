@@ -36,7 +36,7 @@ function addItem(listType) {
         list.appendChild(li);
         input.value = ''; 
 
-        alert("Item added: " + value);
+    
     }
 }
 

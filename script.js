@@ -43,8 +43,9 @@ function addItem(listType) {
 
     const value = input.value.trim().toLowerCase();
     
-    // Validate input: only letters, max 20 characters
-    const regex = /^[A-Za-z]{1,19}$/;
+    // Validate input:
+    
+    const regex = /[^A-Za-z]/;
     if (regex.test(value)) {
         // Check if the item already exists in the list
         const items = list.getElementsByTagName('li');
@@ -76,7 +77,7 @@ function addItem(listType) {
             showPopup("Duplicate item.");
         }
     } else {
-        showPopup("Invalid input, (max 20 charchters).");
+        showPopup("Invalid input");
     }
     input.value = ''; // Clear the input field
 }

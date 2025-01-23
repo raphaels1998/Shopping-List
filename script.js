@@ -70,7 +70,6 @@ function addToCart(item) {
     }
 }
 
-// Function to add items directly to the shopping list
 function addItem(listType) {
     let input, list;
     
@@ -82,8 +81,13 @@ function addItem(listType) {
         list = document.getElementById('shopping-list');
     }
 
+    if (!input || !list) {
+        showPopup("Input or list element not found.");
+        return;
+    }
+
     const value = input.value.trim().toLowerCase();
-    
+
     // Validate input
     const regex = /^[a-z ]+$/;
     if (regex.test(value)) {
@@ -91,8 +95,8 @@ function addItem(listType) {
         const items = list.getElementsByTagName('li');
         let duplicate = false;
         for (let i = 0; i < items.length; i++) {
+            // Compare only the text content of the item, excluding the button text
             if (items[i].childNodes[0] && items[i].childNodes[0].nodeValue.trim().toLowerCase() === value) {
-                showPopup("Item already in list.");
                 duplicate = true;
                 break;
             }
@@ -143,8 +147,6 @@ function addItem(listType) {
     }
     input.value = ''; // Clear the input field
 }
-
-
 
 // Add event listeners for both input fields
 document.getElementById('master-input').addEventListener('keydown', function(event) {

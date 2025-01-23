@@ -19,7 +19,7 @@ input {
 .add-to-cart {
     font-size: 12px;
     padding: 2px 5px;
-    margin-right: 10px;
+    margin-left: 0;
     background-color: #355E3B;
     color: white;
     border: none;

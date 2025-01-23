@@ -16,6 +16,20 @@ input {
     box-sizing: border-box;
 }
 
+/* Styling for pop-up messages */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
 /* Initially hide both list sections */
 .list-section {
     display: none;

@@ -4,16 +4,15 @@ function showList(listType) {
     document.getElementById('master-list-section').classList.remove('active');
     document.getElementById('shopping-list-section').classList.remove('active');
 
-    // Show the corresponding list section and its input based on the listType parameter
+    // Show the corresponding list section based on the listType parameter
     if (listType === 'master') {
         document.getElementById('master-list-section').classList.add('active');
     } else if (listType === 'shopping') {
         document.getElementById('shopping-list-section').classList.add('active');
     }
-    
 }
 
-// Ensure Master List is shown by default on page load (with input)
+// Ensure Master List is shown by default on page load
 window.onload = function() {
     showList('master');
 };
@@ -44,12 +43,12 @@ function addItem(listType) {
 // Add event listeners for both input fields
 document.getElementById('master-input').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        addItem('master'); // Pass 'master' to the addItem function
+        addItem('master');
     }
 });
 
 document.getElementById('shopping-input').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        addItem('shopping'); // Pass 'shopping' to the addItem function
+        addItem('shopping');
     }
 });

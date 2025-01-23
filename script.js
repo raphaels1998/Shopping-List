@@ -10,6 +10,7 @@ function showList(listType) {
     } else if (listType === 'shopping') {
         document.getElementById('shopping-list-section').classList.add('active');
     }
+    
 }
 
 // Ensure Master List is shown by default on page load (with input)

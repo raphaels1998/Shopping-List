@@ -29,7 +29,6 @@ function showPopup(message) {
     }, 3000); // Remove the pop-up after 3 seconds
 }
 
-// Function to add an item to the selected list
 function addItem(listType) {
     let input, list;
     
@@ -50,7 +49,7 @@ function addItem(listType) {
         const items = list.getElementsByTagName('li');
         let duplicate = false;
         for (let i = 0; i < items.length; i++) {
-            if (items[i].textContent === value) {
+            if (items[i].textContent.toLowerCase() === value) {
                 duplicate = true;
                 break;
             }

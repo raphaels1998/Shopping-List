@@ -17,6 +17,20 @@ window.onload = function() {
     showList('master');
 };
 
+// Function to create a temporary pop-up message
+function showPopup(message) {
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.textContent = message;
+    document.body.appendChild(popup);
+
+    setTimeout(() => {
+        popup.remove();
+    }, 3000); // Remove the pop-up after 3 seconds
+}
+
+
+
 // Function to add an item to the selected list
 function addItem(listType) {
     let input, list;
@@ -30,14 +44,20 @@ function addItem(listType) {
     }
 
     const value = input.value.trim();
-    if (value) {
+    
+    // Validate input: only letters, max 20 characters
+    const regex = /^[A-Za-z]{1,20}$/;
+    if (regex.test(value)) {
         const li = document.createElement('li');
         li.textContent = value;
         list.appendChild(li);
-        input.value = ''; 
+    } else {
+        showPopup("Invalid input. Please enter only letters (max 20 characters).");
+    }
+    input.value = ''; // Clear the input field
 
     
-    }
+    
 }
 
 // Add event listeners for both input fields

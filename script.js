@@ -61,9 +61,9 @@ window.onload = function() {
         const li = document.createElement('li');
         li.textContent = value;
         list.appendChild(li);
-        input.value = ''; // Clear the input field
+        input.value = ''; 
 
-        console.log("Item added:", value); // Log item added
+        alert("Item added: ", value);
     }
 }
 // Add event listeners for both input fields

@@ -44,7 +44,7 @@ function addItem(listType) {
     const value = input.value.trim().toLowerCase();
     
     // Validate input
-    const regex = /^[A-Za-z]+$/;
+    const regex = /^[A-Za-z ]+$/;
     if (regex.test(value)) {
         // Check if the item already exists in the list
         const items = list.getElementsByTagName('li');

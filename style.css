@@ -16,10 +16,10 @@ input {
     box-sizing: border-box;
 }
 
+
 .add-to-cart {
     font-size: 12px;
     padding: 2px 5px;
-    margin-left: 100px;
     background-color: #355E3B;
     color: white;
     border: none;
@@ -83,10 +83,11 @@ ul {
     list-style-type: none;
     padding: 0;
 }
-
-li {
-    display: inline-block;
-    width: 50%;
+li {
+    display: flex;                /* Enable flexbox for alignment */
+    justify-content: space-between; /* Push content to opposite sides */
+    align-items: center;          /* Vertically align items inside the <li> */
+    width: 50%;                   /* Maintain the width */
     padding: 5px;
     background-color: #444;
     color: white;

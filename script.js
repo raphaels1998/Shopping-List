@@ -24,7 +24,7 @@ window.onload = function() {
 
 
 // Function to add an item to the selected list
-function addItem(listType) {
+<!-- function addItem(listType) {
     let input, list;
     
     if (listType === 'master') {
@@ -43,7 +43,29 @@ function addItem(listType) {
         input.value = ''; // Clear the input field
     }
 }
+--> 
 
+    function addItem(listType) {
+    let input, list;
+    
+    if (listType === 'master') {
+        input = document.getElementById('master-input');
+        list = document.getElementById('master-list');
+    } else if (listType === 'shopping') {
+        input = document.getElementById('shopping-input');
+        list = document.getElementById('shopping-list');
+    }
+
+    const value = input.value.trim();
+    if (value) {
+        const li = document.createElement('li');
+        li.textContent = value;
+        list.appendChild(li);
+        input.value = ''; // Clear the input field
+
+        console.log("Item added:", value); // Log item added
+    }
+}
 // Add event listeners for both input fields
 document.getElementById('master-input').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {

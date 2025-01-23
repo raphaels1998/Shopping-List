@@ -59,6 +59,17 @@ function addItem(listType) {
         if (!duplicate) {
             const li = document.createElement('li');
             li.textContent = value;
+
+            // Add "Add to Cart" button next to the item
+            if (listType === 'master') {
+                const addButton = document.createElement('button');
+                addButton.textContent = "Add to Cart";
+                addButton.onclick = function() {
+                    addToCart(value);
+                };
+                li.appendChild(addButton);
+            }
+
             list.appendChild(li);
         } else {
             showPopup("Duplicate item. Please enter a unique item.");
@@ -67,6 +78,27 @@ function addItem(listType) {
         showPopup("Invalid input. Please enter only letters (max 20 characters).");
     }
     input.value = ''; // Clear the input field
+}
+
+// Function to add an item to the shopping list, ensuring no duplicates
+function addToCart(item) {
+    const shoppingList = document.getElementById('shopping-list');
+    const items = shoppingList.getElementsByTagName('li');
+    let duplicate = false;
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].textContent === item) {
+            duplicate = true;
+            break;
+        }
+    }
+
+    if (!duplicate) {
+        const li = document.createElement('li');
+        li.textContent = item;
+        shoppingList.appendChild(li);
+    } else {
+        showPopup("Item already in shopping list.");
+    }
 }
 
 // Add event listeners for both input fields

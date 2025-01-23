@@ -50,7 +50,7 @@ function addItem(listType) {
         let duplicate = false;
         for (let i = 0; i < items.length; i++) {
             if (items[i].textContent.trim().toLowerCase() === value) {
-                showPopup(value);
+                showPopup("hey");
                 duplicate = true;
                 break;
             }

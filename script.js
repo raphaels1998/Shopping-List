@@ -27,8 +27,7 @@ function showPopup(message) {
     setTimeout(() => {
         popup.remove();
     }, 3000); // Remove the pop-up after 3 seconds
-}
-
+    
 function addItem(listType) {
     let input, list;
     
@@ -50,7 +49,7 @@ function addItem(listType) {
         let duplicate = false;
         for (let i = 0; i < items.length; i++) {
             if (items[i].childNodes[0] && items[i].childNodes[0].nodeValue.trim().toLowerCase() === value) {
-                showPopup("hey");
+                showPopup("Item already in list.");
                 duplicate = true;
                 break;
             }
@@ -60,7 +59,7 @@ function addItem(listType) {
             const li = document.createElement('li');
             li.textContent = value;
 
-            // Add "Add to Cart" button next to the item
+            // Only add "Add to Cart" button for master list
             if (listType === 'master') {
                 const addButton = document.createElement('button');
                 addButton.textContent = "Add to Cart";
@@ -69,6 +68,26 @@ function addItem(listType) {
                     addToCart(value);
                 };
                 li.appendChild(addButton);
+            }
+
+            // Add quantity input field if it's the shopping list
+            if (listType === 'shopping') {
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
+                quantityInput.placeholder = 'Qty (1-99)';
+                quantityInput.maxLength = 2;  // Restrict input to 2 digits
+
+                // Validate input to ensure it's a number between 1 and 99
+                quantityInput.addEventListener('input', function () {
+                    let value = quantityInput.value;
+                    if (value < 1 || value > 99) {
+                        quantityInput.setCustomValidity('Please enter a number between 1 and 99');
+                    } else {
+                        quantityInput.setCustomValidity('');
+                    }
+                });
+
+                li.appendChild(quantityInput);
             }
 
             list.appendChild(li);
@@ -81,13 +100,14 @@ function addItem(listType) {
     input.value = ''; // Clear the input field
 }
 
-// Function to add an item to the shopping list, ensuring no duplicates
 function addToCart(item) {
     const shoppingList = document.getElementById('shopping-list');
     const items = shoppingList.getElementsByTagName('li');
     let duplicate = false;
+    
+    // Check for duplicates in the shopping list
     for (let i = 0; i < items.length; i++) {
-        if (items[i].textContent === item) {
+        if (items[i].textContent.trim().toLowerCase() === item.trim().toLowerCase()) {
             duplicate = true;
             break;
         }
@@ -96,6 +116,24 @@ function addToCart(item) {
     if (!duplicate) {
         const li = document.createElement('li');
         li.textContent = item;
+
+        // Add the quantity input field for the shopping list
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
+        quantityInput.placeholder = 'Qty (1-99)';
+        quantityInput.maxLength = 2;  // Restrict input to 2 digits
+
+        // Validate input to ensure it's a number between 1 and 99
+        quantityInput.addEventListener('input', function () {
+            let value = quantityInput.value;
+            if (value < 1 || value > 99) {
+                quantityInput.setCustomValidity('Please enter a number between 1 and 99');
+            } else {
+                quantityInput.setCustomValidity('');
+            }
+        });
+
+        li.appendChild(quantityInput);
         shoppingList.appendChild(li);
     } else {
         showPopup("Item already in shopping list.");

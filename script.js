@@ -41,7 +41,7 @@ function addItem(listType) {
         list = document.getElementById('shopping-list');
     }
 
-    const value = input.value.trim();
+    const value = input.value.trim().toLowerCase();
     
     // Validate input: only letters, max 20 characters
     const regex = /^[A-Za-z]{1,20}$/;

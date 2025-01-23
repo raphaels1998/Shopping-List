@@ -28,6 +28,49 @@ function showPopup(message) {
         popup.remove();
     }, 3000); // Remove the pop-up after 3 seconds
     
+// Function to add an item to the shopping list, ensuring no duplicates
+function addToCart(item) {
+    const shoppingList = document.getElementById('shopping-list');
+    const items = shoppingList.getElementsByTagName('li');
+    let duplicate = false;
+    
+    // Check for duplicates in the shopping list
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].textContent.trim().toLowerCase() === item.trim().toLowerCase()) {
+            duplicate = true;
+            break;
+        }
+    }
+
+    if (!duplicate) {
+        const li = document.createElement('li');
+        li.textContent = item;
+
+        // Add the quantity input field for the shopping list
+        const quantityInput = document.createElement('input');
+        quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
+        quantityInput.placeholder = 'Qty (1-99)';
+        quantityInput.maxLength = 2;  // Restrict input to 2 digits
+        quantityInput.classList.add('shopping-quantity-input'); // Add class for styling
+
+        // Add event listener for validation (1-99)
+        quantityInput.addEventListener('input', function () {
+            let value = quantityInput.value;
+            if (value < 1 || value > 99) {
+                quantityInput.setCustomValidity('Please enter a number between 1 and 99');
+            } else {
+                quantityInput.setCustomValidity('');
+            }
+        });
+
+        li.appendChild(quantityInput);
+        shoppingList.appendChild(li);
+    } else {
+        showPopup("Item already in shopping list.");
+    }
+}
+
+// Function to add items directly to the shopping list
 function addItem(listType) {
     let input, list;
     
@@ -70,14 +113,15 @@ function addItem(listType) {
                 li.appendChild(addButton);
             }
 
-            // Add quantity input field if it's the shopping list
+            // Add quantity input field for shopping list
             if (listType === 'shopping') {
                 const quantityInput = document.createElement('input');
                 quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
                 quantityInput.placeholder = 'Qty (1-99)';
                 quantityInput.maxLength = 2;  // Restrict input to 2 digits
-                quantityInput.classList.add('shopping-quantity-input');
-                // Validate input to ensure it's a number between 1 and 99
+                quantityInput.classList.add('shopping-quantity-input'); // Add class for styling
+
+                // Add event listener for validation (1-99)
                 quantityInput.addEventListener('input', function () {
                     let value = quantityInput.value;
                     if (value < 1 || value > 99) {
@@ -100,45 +144,7 @@ function addItem(listType) {
     input.value = ''; // Clear the input field
 }
 
-function addToCart(item) {
-    const shoppingList = document.getElementById('shopping-list');
-    const items = shoppingList.getElementsByTagName('li');
-    let duplicate = false;
-    
-    // Check for duplicates in the shopping list
-    for (let i = 0; i < items.length; i++) {
-        if (items[i].textContent.trim().toLowerCase() === item.trim().toLowerCase()) {
-            duplicate = true;
-            break;
-        }
-    }
 
-    if (!duplicate) {
-        const li = document.createElement('li');
-        li.textContent = item;
-
-        // Add the quantity input field for the shopping list
-        const quantityInput = document.createElement('input');
-        quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
-        quantityInput.placeholder = 'Qty (1-99)';
-        quantityInput.maxLength = 2;  // Restrict input to 2 digits
-        quantityInput.classList.add('shopping-quantity-input');
-        // Validate input to ensure it's a number between 1 and 99
-        quantityInput.addEventListener('input', function () {
-            let value = quantityInput.value;
-            if (value < 1 || value > 99) {
-                quantityInput.setCustomValidity('Please enter a number between 1 and 99');
-            } else {
-                quantityInput.setCustomValidity('');
-            }
-        });
-
-        li.appendChild(quantityInput);
-        shoppingList.appendChild(li);
-    } else {
-        showPopup("Item already in shopping list.");
-    }
-}
 
 // Add event listeners for both input fields
 document.getElementById('master-input').addEventListener('keydown', function(event) {

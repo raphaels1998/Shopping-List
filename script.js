@@ -76,7 +76,7 @@ function addItem(listType) {
                 quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
                 quantityInput.placeholder = 'Qty (1-99)';
                 quantityInput.maxLength = 2;  // Restrict input to 2 digits
-
+                quantityInput.classList.add('shopping-quantity-input');
                 // Validate input to ensure it's a number between 1 and 99
                 quantityInput.addEventListener('input', function () {
                     let value = quantityInput.value;
@@ -122,7 +122,7 @@ function addToCart(item) {
         quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
         quantityInput.placeholder = 'Qty (1-99)';
         quantityInput.maxLength = 2;  // Restrict input to 2 digits
-
+        quantityInput.classList.add('shopping-quantity-input');
         // Validate input to ensure it's a number between 1 and 99
         quantityInput.addEventListener('input', function () {
             let value = quantityInput.value;

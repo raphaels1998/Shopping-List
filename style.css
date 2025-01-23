@@ -1,5 +1,5 @@
 body {
-    background-color: navy;
+    background-color: #E8F5E9;
 }
 
 /* Styling for input fields */
@@ -12,7 +12,7 @@ input {
     margin-top: 10px;
     background-color: #333;
     color: white;
-    width: 50%;
+    width: 60%;
     box-sizing: border-box;
 }
 

@@ -24,7 +24,7 @@ window.onload = function() {
 
 
 // Function to add an item to the selected list
-<!-- function addItem(listType) {
+/* function addItem(listType) {
     let input, list;
     
     if (listType === 'master') {
@@ -43,7 +43,7 @@ window.onload = function() {
         input.value = ''; // Clear the input field
     }
 }
---> 
+*/
 
     function addItem(listType) {
     let input, list;

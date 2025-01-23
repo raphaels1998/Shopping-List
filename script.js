@@ -49,7 +49,8 @@ function addItem(listType) {
         const items = list.getElementsByTagName('li');
         let duplicate = false;
         for (let i = 0; i < items.length; i++) {
-            if (items[i].textContent.toLowerCase() === value) {
+            if (items[i].textContent.trim().toLowerCase() === value) {
+                showPopup(items[i].textContent);
                 duplicate = true;
                 break;
             }

@@ -81,7 +81,7 @@ function addItem(listType) {
             if (listType === 'shopping') {
                 const quantityInput = document.createElement('input');
                 quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
-                quantityInput.placeholder = 'Qty (1-99)';
+                quantityInput.placeholder = 'Qty';
                 quantityInput.maxLength = 2;  // Restrict input to 2 digits
                 quantityInput.classList.add('shopping-quantity-input'); // Add class for styling
 

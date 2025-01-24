@@ -97,7 +97,7 @@ li {
 
 /* Style for quantity input to look like the add-to-cart button */
 .shopping-quantity-input {
-    font-size: 14px;  /* Slightly larger font size for readability */
+    font-size: 12px;  
     padding: 5px;  /* Padding for comfortable touch targets */
     background-color: #355E3B; /* Same green as Add to Cart button */
     color: white;

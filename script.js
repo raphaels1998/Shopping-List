@@ -77,6 +77,27 @@ function addItem(listType) {
                 li.appendChild(addButton);
             }
 
+            // Add quantity input field for shopping list
+            if (listType === 'shopping') {
+                const quantityInput = document.createElement('input');
+                quantityInput.type = 'tel';  // Triggers the phone number keypad on mobile
+                quantityInput.placeholder = 'Qty (1-99)';
+                quantityInput.maxLength = 2;  // Restrict input to 2 digits
+                quantityInput.classList.add('shopping-quantity-input'); // Add class for styling
+
+                // Add event listener for validation (1-99)
+                quantityInput.addEventListener('input', function () {
+                    let value = quantityInput.value;
+                    if (value < 1 || value > 99) {
+                        quantityInput.setCustomValidity('Please enter a number between 1 and 99');
+                    } else {
+                        quantityInput.setCustomValidity('');
+                    }
+                });
+
+                li.appendChild(quantityInput);
+            }
+
             list.appendChild(li);
         } else {
             showPopup("Duplicate item.");

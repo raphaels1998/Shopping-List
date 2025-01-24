@@ -94,3 +94,40 @@ li {
     border-radius: 3px;
     margin-bottom: 5px;
 }
+
+/* Style for quantity input to look like the add-to-cart button */
+.shopping-quantity-input {
+    font-size: 14px;  /* Slightly larger font size for readability */
+    padding: 5px;  /* Padding for comfortable touch targets */
+    background-color: #355E3B; /* Same green as Add to Cart button */
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 60px; /* Adjust width to match desired look */
+    text-align: center; /* Center the number inside the input */
+    margin-left: 10px; /* Margin to space out from other elements */
+}
+
+/* Optional: Focus style for quantity input to maintain consistency */
+.shopping-quantity-input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #7A9E7F; /* Add a soft glow on focus */
+}
+
+/* Styling to ensure input fields are user-friendly on mobile devices */
+.shopping-quantity-input[type="tel"] {
+    -webkit-appearance: none; /* Remove default styling in Safari */
+    -moz-appearance: textfield; /* Remove default styling in Firefox */
+}
+
+/* Remove spinners from input field in modern browsers */
+.shopping-quantity-input::-webkit-outer-spin-button,
+.shopping-quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.shopping-quantity-input {
+    -moz-appearance: textfield;
+}

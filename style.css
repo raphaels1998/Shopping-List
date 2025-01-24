@@ -16,25 +16,6 @@ input {
     box-sizing: border-box;
 }
 
-/* Style for quantity input to look like the add-to-cart button */
-.shopping-quantity-input {
-    font-size: 12px;
-    padding: 2px 5px;
-    background-color: #355E3B; /* Same green as Add to Cart button */
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 50px; /* Adjust width to match desired look */
-    text-align: center; /* Center the number inside the input */
-}
-
-/* Optional: Focus style for quantity input to maintain consistency */
-.shopping-quantity-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px #7A9E7F; /* Add a soft glow on focus */
-}
-
 .add-to-cart {
     font-size: 12px;
     padding: 2px 5px;
@@ -101,7 +82,8 @@ ul {
     list-style-type: none;
     padding: 0;
 }
-li {
+
+li {
     display: flex;                /* Enable flexbox for alignment */
     justify-content: space-between; /* Push content to opposite sides */
     align-items: center;          /* Vertically align items inside the <li> */

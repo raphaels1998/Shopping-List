@@ -102,7 +102,7 @@ li {
     background-color: #355E3B; /* Same green as Add to Cart button */
     color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 110px;
     cursor: pointer;
     width: 60px; /* Adjust width to match desired look */
     text-align: center; /* Center the number inside the input */

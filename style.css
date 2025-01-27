@@ -107,7 +107,7 @@ li {
     width: 60px; /* Adjust width to match desired look */
     text-align: center; /* Center the number inside the input */
     margin-left: 50px; /* Margin to space out from other elements */
-    margin-bottom: 50px(
+    margin-bottom: 50px;
 }
 
 /* Optional: Focus style for quantity input to maintain consistency */
